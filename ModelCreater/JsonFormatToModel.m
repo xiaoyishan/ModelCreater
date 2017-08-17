@@ -19,7 +19,7 @@ const NSString *FormateDic  = @"@property (nonatomic, strong) NSDictionary *";
 
 @implementation JsonFormatToModel
 
-+(NSString*)TranslateToModelCode:(NSString*)json{
+-(NSString*)TranslateToModelCode:(NSString*)json{
     NSDictionary *Dic = [self JsonToDic:json];
 
     NSString *ModelStr = @"\n\n";
@@ -58,7 +58,7 @@ const NSString *FormateDic  = @"@property (nonatomic, strong) NSDictionary *";
 
 
 //json 到字典
-+ (NSDictionary*)JsonToDic:(NSString*)json{
+- (NSDictionary*)JsonToDic:(NSString*)json{
 
     NSData *jsonData = [json dataUsingEncoding:NSUTF8StringEncoding];
     NSError *err;

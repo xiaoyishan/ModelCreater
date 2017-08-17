@@ -10,5 +10,5 @@
 
 @interface JsonFormatToModel : NSObject
 
-+(NSString*)TranslateToModelCode:(NSString*)json;
+-(NSString*)TranslateToModelCode:(NSString*)json;
 @end
