@@ -22,9 +22,6 @@
 
 
 
-@property (nonatomic, strong) NSArray *
-@property (nonatomic, strong) NSDictionary *
-@property (nonatomic, strong) NSString *
 
 @end
 
