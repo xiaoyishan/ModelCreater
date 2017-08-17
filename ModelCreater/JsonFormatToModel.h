@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface JsonFormatToModel : NSObject
+@interface JsonFormatToModel : NSObject{
+    NSString *ModelStr;
+}
 
 -(NSString*)TranslateToModelCode:(NSString*)json;
 @end

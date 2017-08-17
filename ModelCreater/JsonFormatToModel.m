@@ -19,10 +19,22 @@ const NSString *FormateDic  = @"@property (nonatomic, strong) NSDictionary *";
 
 @implementation JsonFormatToModel
 
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        ModelStr = @"";
+    }
+    return self;
+}
+
+
+
 -(NSString*)TranslateToModelCode:(NSString*)json{
     NSDictionary *Dic = [self JsonToDic:json];
 
-    NSString *ModelStr = @"\n\n";
+    ModelStr = @"\n\n";
 
     for (NSString *key in Dic.allKeys) {
 
