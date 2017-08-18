@@ -66,6 +66,7 @@ const NSString *End  = @"@end";
 
 
     if (![ModelStr containsString:CurrentStr]) {
+        if(className.length==0)className=@"RootClass";
         ModelStr = [NSString stringWithFormat:@"\n\n//\n%@\n%@%@\n\n%@",Interface(className),CurrentStr, End,ModelStr];
     }
 

@@ -1722,6 +1722,15 @@
                                     </connections>
                                 </buttonCell>
                             </button>
+                            <textField canDrawConcurrently="YES" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lny-J6-X9V">
+                                <rect key="frame" x="186" y="152" width="126" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" focusRingType="none" placeholderString="RootClassName" drawsBackground="YES" id="V8B-UD-byX">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
@@ -1729,6 +1738,7 @@
                         <outlet property="InputVIew" destination="RB6-ld-oI7" id="WJ2-P3-rnM"/>
                         <outlet property="OutputTextView" destination="Wca-LT-zLB" id="AsJ-qk-BdP"/>
                         <outlet property="OutputView" destination="5Ak-mU-n2h" id="1ea-nc-cZO"/>
+                        <outlet property="RootNameField" destination="lny-J6-X9V" id="H8n-Hq-8M3"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

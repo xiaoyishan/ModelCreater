@@ -19,6 +19,7 @@
 @property (unsafe_unretained) IBOutlet NSTextView *InputTextView;
 @property (unsafe_unretained) IBOutlet NSTextView *OutputTextView;
 
+@property (weak) IBOutlet NSTextField *RootNameField;
 
 
 
