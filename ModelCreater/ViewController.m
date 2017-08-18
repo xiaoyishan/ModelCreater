@@ -25,7 +25,7 @@
 
 - (IBAction)ToModel:(id)sender {
     NSString *json = [_InputTextView accessibilityValue];
-    _OutputTextView.accessibilityValue = [[JsonFormatToModel new] TranslateToModelCode:json];
+    _OutputTextView.accessibilityValue = [[JsonFormatToModel new] TranslateToModelCode:json RootClassName:@"RootClass"];
 }
 - (IBAction)ToView:(id)sender {
     

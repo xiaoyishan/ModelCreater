@@ -14,8 +14,14 @@ const NSString *FormateStr  = @"@property (nonatomic, copy) NSString *";
 const NSString *FormateArr  = @"@property (nonatomic, strong) NSArray *";
 const NSString *FormateDic  = @"@property (nonatomic, strong) NSDictionary *";
 
+#define     CustomArr(x)    "@property (nonatomic, strong) <x>NSArray *"
+#define     CustomDic(x)    "@property (nonatomic, strong) <x>NSDictionary *"
 
 
+const NSString *End  = @"@end";
+
+#define     Interface(name)    [NSString stringWithFormat:@"@interface %@ : NSObject", name]
+#define     implement(name)    [NSString stringWithFormat:@"@@implementation %@ ", name]
 
 @implementation JsonFormatToModel
 
@@ -31,43 +37,61 @@ const NSString *FormateDic  = @"@property (nonatomic, strong) NSDictionary *";
 
 
 
--(NSString*)TranslateToModelCode:(NSString*)json{
+-(NSString*)TranslateToModelCode:(NSString*)json RootClassName:(NSString*)className{
     NSDictionary *Dic = [self JsonToDic:json];
 
-    ModelStr = @"\n\n";
+    NSString *CurrentStr = @"";
 
     for (NSString *key in Dic.allKeys) {
 
         if ([Dic[key] isKindOfClass:[NSString class]]) {
-            ModelStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormateStr,key,ModelStr];
+            CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormateStr,key,CurrentStr];
         }
         if ([Dic[key] isKindOfClass:[NSArray class]]) {
-            ModelStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormateArr,key,ModelStr];
+            CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormateArr,key,CurrentStr];
         }
         if ([Dic[key] isKindOfClass:[NSDictionary class]]) {
-            ModelStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormateDic,key,ModelStr];
+            CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormateDic,key,CurrentStr];
         }
         if ([Dic[key] isKindOfClass:[NSNumber class]]) {
             CGFloat X = [Dic[key] floatValue];
             if (X>floor(X)) {
-                ModelStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormateFlot,key,ModelStr];
+                CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormateFlot,key,CurrentStr];
             }else{
-                ModelStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormateInt,key,ModelStr];
+                CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormateInt,key,CurrentStr];
             }
         }
 
     }
 
 
+    if (![ModelStr containsString:CurrentStr]) {
+        ModelStr = [NSString stringWithFormat:@"\n\n//\n%@\n%@%@\n\n%@",Interface(className),CurrentStr, End,ModelStr];
+    }
 
 
+    for (NSString *key in Dic.allKeys) {
+        if ([Dic[key] isKindOfClass:[NSDictionary class]]) {
+            [self TranslateToModelCode:[self Json:Dic[key]] RootClassName:key];
+        }
+        if ([Dic[key] isKindOfClass:[NSArray class]]) {
+            for (NSDictionary *ArrDic in Dic[key]) {
+                [self TranslateToModelCode:[self Json:ArrDic] RootClassName:key];
+            }
+        }
+
+        
+    }
 
     return ModelStr;
 
 
 }
 
-
+-(NSString*)Json:(NSDictionary*)dic{
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:0 error:nil];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
 
 //json 到字典
 - (NSDictionary*)JsonToDic:(NSString*)json{

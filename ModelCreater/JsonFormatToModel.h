@@ -10,7 +10,8 @@
 
 @interface JsonFormatToModel : NSObject{
     NSString *ModelStr;
+    BOOL IsEnd;//当前model是否结束
 }
 
--(NSString*)TranslateToModelCode:(NSString*)json;
+-(NSString*)TranslateToModelCode:(NSString*)json RootClassName:(NSString*)className;
 @end
