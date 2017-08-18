@@ -26,9 +26,34 @@
 - (IBAction)ToModel:(id)sender {
     NSString *json = [_InputTextView accessibilityValue];
     _OutputTextView.accessibilityValue = [[JsonFormatToModel new] TranslateToModelCode:json RootClassName:_RootNameField.stringValue];
+    [self JsonToDic:json];
 }
 - (IBAction)ToView:(id)sender {
     
 }
 
+
+//json 到字典
+- (NSDictionary*)JsonToDic:(NSString*)json{
+
+    NSData *jsonData = [json dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
+    if(err) {
+        NSLog(@"json解析失败：%@",err);
+        [self WarringForHold];
+        return nil;
+    }
+    return dic;
+}
+
+- (void) WarringForHold
+{
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:@"OK"];
+    [alert setMessageText:@"tranlate failed"];
+    [alert setInformativeText:@"Please check json formate is allright?"];
+    [alert setAlertStyle:NSAlertStyleWarning];
+    [alert beginSheetModalForWindow:self.view.window modalDelegate:self didEndSelector:nil contextInfo:nil];
+}
 @end
