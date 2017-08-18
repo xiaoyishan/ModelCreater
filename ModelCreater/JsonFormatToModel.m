@@ -21,7 +21,7 @@ const NSString *FormateDic  = @"@property (nonatomic, strong) NSDictionary *";
 const NSString *End  = @"@end";
 
 #define     Interface(name)    [NSString stringWithFormat:@"@interface %@ : NSObject", name]
-#define     implement(name)    [NSString stringWithFormat:@"@@implementation %@ ", name]
+#define     implement(name)    [NSString stringWithFormat:@"@implementation %@ ", name]
 
 @implementation JsonFormatToModel
 
@@ -67,7 +67,7 @@ const NSString *End  = @"@end";
 
     if (![ModelStr containsString:CurrentStr]) {
         if(className.length==0)className=@"RootClass";
-        ModelStr = [NSString stringWithFormat:@"\n\n//\n%@\n%@%@\n\n%@",Interface(className),CurrentStr, End,ModelStr];
+        ModelStr = [NSString stringWithFormat:@"\n//\n%@\n%@%@\n%@",Interface(className),CurrentStr, End,ModelStr];
     }
 
 
@@ -84,7 +84,21 @@ const NSString *End  = @"@end";
         
     }
 
-    return ModelStr;
+    // implementation add
+    ModelStr = [ModelStr stringByAppendingString:@"\n"];
+    NSString *implementStr = @"";
+    NSMutableArray *ImplentArr = [ModelStr componentsSeparatedByString:@"@interface "].mutableCopy;
+    ImplentArr = (NSMutableArray *)[[ImplentArr reverseObjectEnumerator] allObjects];
+    [ImplentArr removeObject:ImplentArr.lastObject];
+
+    for (NSString *str in ImplentArr) {
+        NSString *name = [str componentsSeparatedByString:@" "].firstObject;
+        implementStr = [NSString stringWithFormat:@"\n//\n%@ \n%@\n%@" ,implement(name), End, implementStr];
+    }
+//    ModelStr = [NSString stringWithFormat:@"%@\n---\n%@",ModelStr,implementStr];
+
+
+    return [ModelStr stringByAppendingString:implementStr];
 
 
 }
