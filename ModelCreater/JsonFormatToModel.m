@@ -108,16 +108,12 @@ const NSString *End  = @"@end";
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
-//json 到字典
+//json -> dic
 - (NSDictionary*)JsonToDic:(NSString*)json{
 
     NSData *jsonData = [json dataUsingEncoding:NSUTF8StringEncoding];
     NSError *err;
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
-    if(err) {
-        NSLog(@"json解析失败：%@",err);
-        return nil;
-    }
     return dic;
 }
 

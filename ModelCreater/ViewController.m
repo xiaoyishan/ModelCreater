@@ -33,14 +33,14 @@
 }
 
 
-//json 到字典
+//json -> dic
 - (NSDictionary*)JsonToDic:(NSString*)json{
 
     NSData *jsonData = [json dataUsingEncoding:NSUTF8StringEncoding];
     NSError *err;
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
     if(err) {
-        NSLog(@"json解析失败：%@",err);
+        NSLog(@"json serialize failed：%@",err);
         [self WarringForHold];
         return nil;
     }
@@ -52,8 +52,9 @@
     NSAlert *alert = [[NSAlert alloc] init];
     [alert addButtonWithTitle:@"OK"];
     [alert setMessageText:@"tranlate failed"];
-    [alert setInformativeText:@"Please check json formate is allright?"];
+    [alert setInformativeText:@"Please check json formate is OK?"];
     [alert setAlertStyle:NSAlertStyleWarning];
-    [alert beginSheetModalForWindow:self.view.window modalDelegate:self didEndSelector:nil contextInfo:nil];
+    [alert beginSheetModalForWindow:self.view.window completionHandler:nil];
+
 }
 @end
