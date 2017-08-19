@@ -8,20 +8,22 @@
 
 #import "JsonFormatToModel.h"
 
+
+const NSString *End  = @"@end";
+
 const NSString *FormateInt  = @"@property (nonatomic, assign) NSInteger ";
 const NSString *FormateFlot = @"@property (nonatomic, assign) CGFloat ";
 const NSString *FormateStr  = @"@property (nonatomic, copy) NSString *";
 const NSString *FormateArr  = @"@property (nonatomic, strong) NSArray *";
 const NSString *FormateDic  = @"@property (nonatomic, strong) NSDictionary *";
 
-#define     CustomArr(x)    [NSString stringWithFormat:@"@property (nonatomic, strong) NSArray<%@ *> *", x]
-#define     CustomDic(x)    [NSString stringWithFormat:@"@property (nonatomic, strong) %@ *", x]
+#define     CustomArr(x)    [NSString stringWithFormat:@"@property (nonatomic, strong) NSArray<%@Model *> *", x]
+#define     CustomDic(x)    [NSString stringWithFormat:@"@property (nonatomic, strong) %@Model *", x]
+
+#define     Interface(name)    [NSString stringWithFormat:@"@interface %@Model : NSObject", name]
+#define     implement(name)    [NSString stringWithFormat:@"@implementation %@Model ", name]
 
 
-const NSString *End  = @"@end";
-
-#define     Interface(name)    [NSString stringWithFormat:@"@interface %@ : NSObject", name]
-#define     implement(name)    [NSString stringWithFormat:@"@implementation %@ ", name]
 
 @implementation JsonFormatToModel
 
@@ -95,7 +97,7 @@ const NSString *End  = @"@end";
         NSString *name = [str componentsSeparatedByString:@" "].firstObject;
         implementStr = [NSString stringWithFormat:@"\n//\n%@ \n%@\n%@" ,implement(name), End, implementStr];
     }
-//    ModelStr = [NSString stringWithFormat:@"%@\n---\n%@",ModelStr,implementStr];
+
 
 
     return [ModelStr stringByAppendingString:implementStr];

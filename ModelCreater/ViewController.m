@@ -33,6 +33,12 @@
 }
 
 
+- (IBAction)JsonFormatCheck:(id)sender {
+    NSString *json = [NSString stringWithFormat:@"%@",[_InputTextView accessibilityValue]];
+    _InputTextView.accessibilityValue = json;
+}
+
+
 //json -> dic
 - (NSDictionary*)JsonToDic:(NSString*)json{
 
