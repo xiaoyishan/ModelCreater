@@ -11,10 +11,12 @@
 
 @interface JsonFormatToModel : NSObject{
     NSString *ModelStr;
+    NSString *ViewStr;
 }
 
--(NSString*)TranslateToModelCode:(NSString*)json RootClassName:(NSString*)className;
 
+-(NSString*)TranslateToModelCode:(NSString*)json RootClassName:(NSString*)className;// ->model
 
+-(NSString*)TranslateToViewCode:(NSString*)json;// ->view
 
 @end

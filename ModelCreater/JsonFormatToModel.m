@@ -17,6 +17,18 @@ const NSString *FormateStr  = @"@property (nonatomic, copy) NSString *";
 const NSString *FormateArr  = @"@property (nonatomic, strong) NSArray *";
 const NSString *FormateDic  = @"@property (nonatomic, strong) NSDictionary *";
 
+
+
+const NSString *UIFormateLabel  = @"@property (nonatomic, weak) UILabel *";
+const NSString *UIFormateField  = @"@property (nonatomic, weak) UITextField *";
+const NSString *UIFormateButton  = @"@property (nonatomic, weak) UIButton *";
+
+const NSString *UIFormateLabelIB  = @"@property (nonatomic, weak) UILabel *";
+const NSString *UIFormateFieldIB  = @"@property (nonatomic, weak) UITextField *";
+const NSString *UIFormateButtonIB  = @"@property (nonatomic, weak) UIButton *";
+
+
+
 #define     CustomArr(x)    [NSString stringWithFormat:@"@property (nonatomic, strong) NSArray<%@Model *> *", x]
 #define     CustomDic(x)    [NSString stringWithFormat:@"@property (nonatomic, strong) %@Model *", x]
 
@@ -33,6 +45,7 @@ const NSString *FormateDic  = @"@property (nonatomic, strong) NSDictionary *";
     self = [super init];
     if (self) {
         ModelStr = @"";
+        ViewStr =  @"";
     }
     return self;
 }
@@ -104,6 +117,48 @@ const NSString *FormateDic  = @"@property (nonatomic, strong) NSDictionary *";
 
 
 }
+
+
+
+
+
+// ->view
+-(NSString*)TranslateToViewCode:(NSString*)json{
+    NSDictionary *Dic = [self JsonToDic:json];
+    
+    NSString *CurrentStr = @"";
+    for (NSString *key in Dic.allKeys) {
+        CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", UIFormateLabel,key,CurrentStr];
+    }
+    
+    if (![ViewStr containsString:CurrentStr]) {
+        ViewStr = [NSString stringWithFormat:@"\n%@\n%@", CurrentStr,ViewStr];
+    }
+    
+    
+    
+    
+    for (NSString *key in Dic.allKeys) {
+        if ([Dic[key] isKindOfClass:[NSDictionary class]]) {
+            [self TranslateToViewCode:[self Json:Dic[key]]];
+        }
+        if ([Dic[key] isKindOfClass:[NSArray class]]) {
+            for (NSDictionary *ArrDic in Dic[key]) {
+                [self TranslateToViewCode:[self Json:ArrDic]];
+            }
+        }
+        
+        
+    }
+    return ViewStr;
+}
+
+
+
+
+
+
+
 
 -(NSString*)Json:(NSDictionary*)dic{
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:0 error:nil];
