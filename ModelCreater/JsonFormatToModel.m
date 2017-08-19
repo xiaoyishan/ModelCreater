@@ -14,8 +14,8 @@ const NSString *FormateStr  = @"@property (nonatomic, copy) NSString *";
 const NSString *FormateArr  = @"@property (nonatomic, strong) NSArray *";
 const NSString *FormateDic  = @"@property (nonatomic, strong) NSDictionary *";
 
-#define     CustomArr(x)    "@property (nonatomic, strong) <x>NSArray *"
-#define     CustomDic(x)    "@property (nonatomic, strong) <x>NSDictionary *"
+#define     CustomArr(x)    [NSString stringWithFormat:@"@property (nonatomic, strong) NSArray<%@ *> *", x]
+#define     CustomDic(x)    [NSString stringWithFormat:@"@property (nonatomic, strong) %@ *", x]
 
 
 const NSString *End  = @"@end";
@@ -48,10 +48,10 @@ const NSString *End  = @"@end";
             CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormateStr,key,CurrentStr];
         }
         if ([Dic[key] isKindOfClass:[NSArray class]]) {
-            CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormateArr,key,CurrentStr];
+            CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", CustomArr(key),key,CurrentStr];
         }
         if ([Dic[key] isKindOfClass:[NSDictionary class]]) {
-            CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormateDic,key,CurrentStr];
+            CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", CustomDic(key),key,CurrentStr];
         }
         if ([Dic[key] isKindOfClass:[NSNumber class]]) {
             CGFloat X = [Dic[key] floatValue];
