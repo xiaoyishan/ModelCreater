@@ -7,6 +7,8 @@
 
 #import <Cocoa/Cocoa.h>
 #import "JsonFormatToModel.h"
+#import "NSWindow+MJExtension.h"
+#import "NSView+MJExtension.h"
 
 @interface ViewController : NSViewController
 @property (unsafe_unretained) IBOutlet NSTextView *InputTextView;

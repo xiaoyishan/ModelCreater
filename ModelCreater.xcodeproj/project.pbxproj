@@ -13,6 +13,8 @@
 		216CA6EC1F445025009D5849 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 216CA6EB1F445025009D5849 /* Assets.xcassets */; };
 		216CA6EF1F445025009D5849 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 216CA6ED1F445025009D5849 /* Main.storyboard */; };
 		216CA6F81F445459009D5849 /* JsonFormatToModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 216CA6F71F445459009D5849 /* JsonFormatToModel.m */; };
+		5A43E31F1F4899F1003EF606 /* NSView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A43E31B1F4899F1003EF606 /* NSView+MJExtension.m */; };
+		5A43E3201F4899F1003EF606 /* NSWindow+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A43E31D1F4899F1003EF606 /* NSWindow+MJExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,10 @@
 		216CA6F01F445025009D5849 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		216CA6F61F445459009D5849 /* JsonFormatToModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonFormatToModel.h; sourceTree = "<group>"; };
 		216CA6F71F445459009D5849 /* JsonFormatToModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonFormatToModel.m; sourceTree = "<group>"; };
+		5A43E31B1F4899F1003EF606 /* NSView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+MJExtension.m"; sourceTree = "<group>"; };
+		5A43E31C1F4899F1003EF606 /* NSWindow+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindow+MJExtension.h"; sourceTree = "<group>"; };
+		5A43E31D1F4899F1003EF606 /* NSWindow+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+MJExtension.m"; sourceTree = "<group>"; };
+		5A43E31E1F4899F1003EF606 /* NSView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+MJExtension.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +65,7 @@
 		216CA6E11F445025009D5849 /* ModelCreater */ = {
 			isa = PBXGroup;
 			children = (
+				5A43E31A1F4899F1003EF606 /* Refer */,
 				216CA6F61F445459009D5849 /* JsonFormatToModel.h */,
 				216CA6F71F445459009D5849 /* JsonFormatToModel.m */,
 				216CA6E81F445025009D5849 /* ViewController.h */,
@@ -79,6 +86,17 @@
 				216CA6E61F445025009D5849 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5A43E31A1F4899F1003EF606 /* Refer */ = {
+			isa = PBXGroup;
+			children = (
+				5A43E31E1F4899F1003EF606 /* NSView+MJExtension.h */,
+				5A43E31B1F4899F1003EF606 /* NSView+MJExtension.m */,
+				5A43E31C1F4899F1003EF606 /* NSWindow+MJExtension.h */,
+				5A43E31D1F4899F1003EF606 /* NSWindow+MJExtension.m */,
+			);
+			path = Refer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,7 +172,9 @@
 				216CA6EA1F445025009D5849 /* ViewController.m in Sources */,
 				216CA6F81F445459009D5849 /* JsonFormatToModel.m in Sources */,
 				216CA6E71F445025009D5849 /* main.m in Sources */,
+				5A43E31F1F4899F1003EF606 /* NSView+MJExtension.m in Sources */,
 				216CA6E41F445025009D5849 /* AppDelegate.m in Sources */,
+				5A43E3201F4899F1003EF606 /* NSWindow+MJExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +324,7 @@
 				216CA6F51F445025009D5849 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
