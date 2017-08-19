@@ -1742,7 +1742,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <size key="minSize" width="486" height="583"/>
-                                            <size key="maxSize" width="493" height="10000000"/>
+                                            <size key="maxSize" width="503" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
                                     </subviews>
@@ -1757,9 +1757,18 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7pu-nj-Ttd">
+                                <rect key="frame" x="97" y="51" width="51" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="check" title=" IB？" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="EWT-rP-x2K">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="IBCheckBtn" destination="7pu-nj-Ttd" id="hwg-ZB-wi3"/>
                         <outlet property="InputTextView" destination="0ym-RJ-AJo" id="E7r-gp-vbj"/>
                         <outlet property="OutputTextView" destination="Wca-LT-zLB" id="AsJ-qk-BdP"/>
                         <outlet property="RootNameField" destination="lny-J6-X9V" id="H8n-Hq-8M3"/>

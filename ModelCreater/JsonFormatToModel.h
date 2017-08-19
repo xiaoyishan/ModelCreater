@@ -17,6 +17,6 @@
 
 -(NSString*)TranslateToModelCode:(NSString*)json RootClassName:(NSString*)className;// ->model
 
--(NSString*)TranslateToViewCode:(NSString*)json;// ->view
+-(NSString*)TranslateToViewCode:(NSString*)json HasIB:(BOOL)IB;// ->view
 
 @end

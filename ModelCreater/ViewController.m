@@ -29,7 +29,7 @@
 }
 - (IBAction)ToView:(id)sender {
     NSString *json = [_InputTextView accessibilityValue];
-    _OutputTextView.accessibilityValue = [[JsonFormatToModel new] TranslateToViewCode:json];
+    _OutputTextView.accessibilityValue = [[JsonFormatToModel new] TranslateToViewCode:json HasIB:_IBCheckBtn.state];
     [self JsonToDic:json];
 }
 

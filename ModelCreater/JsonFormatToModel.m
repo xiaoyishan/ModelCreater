@@ -23,9 +23,9 @@ const NSString *UIFormateLabel  = @"@property (nonatomic, weak) UILabel *";
 const NSString *UIFormateField  = @"@property (nonatomic, weak) UITextField *";
 const NSString *UIFormateButton  = @"@property (nonatomic, weak) UIButton *";
 
-const NSString *UIFormateLabelIB  = @"@property (nonatomic, weak) UILabel *";
-const NSString *UIFormateFieldIB  = @"@property (nonatomic, weak) UITextField *";
-const NSString *UIFormateButtonIB  = @"@property (nonatomic, weak) UIButton *";
+const NSString *UIFormateLabelIB  = @"@property (nonatomic, weak) IBOutlet UILabel *";
+const NSString *UIFormateFieldIB  = @"@property (nonatomic, weak) IBOutlet UITextField *";
+const NSString *UIFormateButtonIB  = @"@property (nonatomic, weak) IBOutlet UIButton *";
 
 
 
@@ -123,12 +123,16 @@ const NSString *UIFormateButtonIB  = @"@property (nonatomic, weak) UIButton *";
 
 
 // ->view
--(NSString*)TranslateToViewCode:(NSString*)json{
+-(NSString*)TranslateToViewCode:(NSString*)json HasIB:(BOOL)IB{
     NSDictionary *Dic = [self JsonToDic:json];
     
     NSString *CurrentStr = @"";
     for (NSString *key in Dic.allKeys) {
-        CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", UIFormateLabel,key,CurrentStr];
+        if(IB){
+            CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", UIFormateLabelIB,key,CurrentStr];
+        }else{
+            CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", UIFormateLabel,key,CurrentStr];
+        }
     }
     
     if (![ViewStr containsString:CurrentStr]) {
@@ -140,11 +144,11 @@ const NSString *UIFormateButtonIB  = @"@property (nonatomic, weak) UIButton *";
     
     for (NSString *key in Dic.allKeys) {
         if ([Dic[key] isKindOfClass:[NSDictionary class]]) {
-            [self TranslateToViewCode:[self Json:Dic[key]]];
+            [self TranslateToViewCode:[self Json:Dic[key]] HasIB:IB];
         }
         if ([Dic[key] isKindOfClass:[NSArray class]]) {
             for (NSDictionary *ArrDic in Dic[key]) {
-                [self TranslateToViewCode:[self Json:ArrDic]];
+                [self TranslateToViewCode:[self Json:ArrDic] HasIB:IB];
             }
         }
         
