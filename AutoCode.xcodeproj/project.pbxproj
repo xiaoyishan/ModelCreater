@@ -15,6 +15,7 @@
 		216CA6F81F445459009D5849 /* JsonFormatToModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 216CA6F71F445459009D5849 /* JsonFormatToModel.m */; };
 		5A43E31F1F4899F1003EF606 /* NSView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A43E31B1F4899F1003EF606 /* NSView+MJExtension.m */; };
 		5A43E3201F4899F1003EF606 /* NSWindow+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A43E31D1F4899F1003EF606 /* NSWindow+MJExtension.m */; };
+		5ABA1FC91F4963700009EB06 /* RootWindowC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABA1FC81F4963700009EB06 /* RootWindowC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,8 @@
 		5A43E31C1F4899F1003EF606 /* NSWindow+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindow+MJExtension.h"; sourceTree = "<group>"; };
 		5A43E31D1F4899F1003EF606 /* NSWindow+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+MJExtension.m"; sourceTree = "<group>"; };
 		5A43E31E1F4899F1003EF606 /* NSView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+MJExtension.h"; sourceTree = "<group>"; };
+		5ABA1FC71F4963700009EB06 /* RootWindowC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootWindowC.h; sourceTree = "<group>"; };
+		5ABA1FC81F4963700009EB06 /* RootWindowC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootWindowC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +73,8 @@
 				216CA6F71F445459009D5849 /* JsonFormatToModel.m */,
 				216CA6E81F445025009D5849 /* ViewController.h */,
 				216CA6E91F445025009D5849 /* ViewController.m */,
+				5ABA1FC71F4963700009EB06 /* RootWindowC.h */,
+				5ABA1FC81F4963700009EB06 /* RootWindowC.m */,
 				216CA6E51F445025009D5849 /* Supporting Files */,
 			);
 			path = ModelCreater;
@@ -176,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				216CA6EA1F445025009D5849 /* ViewController.m in Sources */,
+				5ABA1FC91F4963700009EB06 /* RootWindowC.m in Sources */,
 				216CA6F81F445459009D5849 /* JsonFormatToModel.m in Sources */,
 				216CA6E71F445025009D5849 /* main.m in Sources */,
 				5A43E31F1F4899F1003EF606 /* NSView+MJExtension.m in Sources */,

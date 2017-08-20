@@ -6,6 +6,7 @@
 //  Copyright © 2017年 xiexin. All rights reserved.
 
 #import <Cocoa/Cocoa.h>
+#import "AppDelegate.h"
 #import "JsonFormatToModel.h"
 #import "NSWindow+MJExtension.h"
 #import "NSView+MJExtension.h"
