@@ -32,6 +32,9 @@
     _OutputTextView.accessibilityValue = [[JsonFormatToModel new] TranslateToViewCode:json HasIB:_IBCheckBtn.state];
     [self JsonToDic:json];
 }
+- (IBAction)IBcheckauto:(id)sender {
+    [self ToView:nil];
+}
 
 
 - (IBAction)JsonFormatCheck:(id)sender {
