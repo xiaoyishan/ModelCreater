@@ -24,7 +24,7 @@
 
 - (IBAction)ToModel:(id)sender {
     NSString *json = [_InputTextView accessibilityValue];
-    _OutputTextView.accessibilityValue = [[JsonFormatToModel new] TranslateToModelCode:json RootClassName:_RootNameField.stringValue];
+    _OutputTextView.accessibilityValue = [[JsonFormatToModel new] TranslateToModelCode:json RootClassName:_RootNameField.stringValue showNull:_NullCheckBtn.state];
     [self JsonToDic:json];
 }
 - (IBAction)ToView:(id)sender {
@@ -34,6 +34,9 @@
 }
 - (IBAction)IBcheckauto:(id)sender {
     [self ToView:nil];
+}
+- (IBAction)Nullcheckauto:(id)sender {
+    [self ToModel:nil];
 }
 
 

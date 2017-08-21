@@ -12,11 +12,12 @@
 const NSString *End  = @"@end";
 
 const NSString *FormateInt  = @"@property (nonatomic, assign) NSInteger ";
-const NSString *FormateFlot = @"@property (nonatomic, assign) CGFloat ";
-const NSString *FormateStr  = @"@property (nonatomic, copy) NSString *";
-const NSString *FormateArr  = @"@property (nonatomic, strong) NSArray *";
+const NSString *FormateFlot = @"@property (nonatomic, assign) CGFloat   ";
+const NSString *FormateStr  = @"@property (nonatomic, copy)   NSString *";
+const NSString *FormateArr  = @"@property (nonatomic, strong) NSArray  *";
 const NSString *FormateDic  = @"@property (nonatomic, strong) NSDictionary *";
 
+const NSString *FormateNull  = @"@property (nonatomic,strong) NSObject  *";
 
 
 const NSString *UIFormateLabel  = @"@property (nonatomic, weak) UILabel *";
@@ -52,7 +53,7 @@ const NSString *UIFormateButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBu
 
 
 
--(NSString*)TranslateToModelCode:(NSString*)json RootClassName:(NSString*)className{
+-(NSString*)TranslateToModelCode:(NSString*)json RootClassName:(NSString*)className showNull:(BOOL)hasNull{
     NSDictionary *Dic = [self JsonToDic:json];
 
     NSString *CurrentStr = @"";
@@ -77,6 +78,21 @@ const NSString *UIFormateButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBu
             }
         }
 
+        // unknow class use nsobject
+        if (![Dic[key] isKindOfClass:[NSString class]] &&
+            ![Dic[key] isKindOfClass:[NSArray class]] &&
+            ![Dic[key] isKindOfClass:[NSDictionary class]] &&
+            ![Dic[key] isKindOfClass:[NSNumber class]]) {
+
+            //dell null and so on
+            if (hasNull) { // use "NSString" for the moment of custom setting
+                CurrentStr = [NSString stringWithFormat:@"%@%@; //unknow \n%@", FormateStr,key,CurrentStr];
+            }else{
+                CurrentStr = [NSString stringWithFormat:@"%@%@; //please manually modify \n%@", FormateNull,key,CurrentStr];
+            }
+
+        }
+
     }
 
 
@@ -88,11 +104,11 @@ const NSString *UIFormateButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBu
 
     for (NSString *key in Dic.allKeys) {
         if ([Dic[key] isKindOfClass:[NSDictionary class]]) {
-            [self TranslateToModelCode:[self Json:Dic[key]] RootClassName:key];
+            [self TranslateToModelCode:[self Json:Dic[key]] RootClassName:key showNull:hasNull];
         }
         if ([Dic[key] isKindOfClass:[NSArray class]]) {
             for (NSDictionary *ArrDic in Dic[key]) {
-                [self TranslateToModelCode:[self Json:ArrDic] RootClassName:key];
+                [self TranslateToModelCode:[self Json:ArrDic] RootClassName:key showNull:hasNull];
             }
         }
 

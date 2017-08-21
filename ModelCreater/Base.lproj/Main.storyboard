@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="17A315i" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
@@ -710,7 +710,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mFY-8O-7tk">
-                                <rect key="frame" x="3" y="46" width="94" height="32"/>
+                                <rect key="frame" x="3" y="20" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="push" title="-&gt; View" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Tx4-em-s4M">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -732,7 +732,7 @@
                                 </connections>
                             </button>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gK8-rm-7Ta">
-                                <rect key="frame" x="7" y="25" width="126" height="26"/>
+                                <rect key="frame" x="97" y="0.0" width="126" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <popUpButtonCell key="cell" type="push" title="New window" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="BZA-Lw-U1I" id="ADt-1f-g91">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -750,14 +750,14 @@
                                 <rect key="frame" x="5" y="108" width="280" height="486"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                 <clipView key="contentView" ambiguous="YES" copiesOnScroll="NO" id="BHY-r2-cld">
-                                    <rect key="frame" x="1" y="1" width="263" height="484"/>
+                                    <rect key="frame" x="1" y="1" width="278" height="484"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView ambiguous="YES" baseWritingDirection="leftToRight" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="0ym-RJ-AJo">
-                                            <rect key="frame" x="0.0" y="0.0" width="263" height="484"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="278" height="484"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="263" height="484"/>
+                                            <size key="minSize" width="278" height="484"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                             <attributedString key="textStorage">
                                                 <fragment>
@@ -1729,7 +1729,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="E7M-hp-hpH">
-                                    <rect key="frame" x="264" y="1" width="15" height="484"/>
+                                    <rect key="frame" x="263" y="1" width="16" height="484"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -1737,14 +1737,14 @@
                                 <rect key="frame" x="290" y="6" width="503" height="588"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="Qcd-9e-BVu">
-                                    <rect key="frame" x="1" y="1" width="486" height="586"/>
+                                    <rect key="frame" x="1" y="1" width="501" height="586"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView ambiguous="YES" importsGraphics="NO" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Wca-LT-zLB">
-                                            <rect key="frame" x="0.0" y="-1" width="486" height="586"/>
+                                            <rect key="frame" x="0.0" y="-1" width="501" height="586"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="486" height="586"/>
+                                            <size key="minSize" width="501" height="586"/>
                                             <size key="maxSize" width="503" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
@@ -1756,12 +1756,12 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="ab5-4L-bPE">
-                                    <rect key="frame" x="487" y="1" width="15" height="586"/>
+                                    <rect key="frame" x="486" y="1" width="16" height="586"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7pu-nj-Ttd">
-                                <rect key="frame" x="97" y="51" width="51" height="25"/>
+                                <rect key="frame" x="97" y="25" width="51" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="check" title=" IB？" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="EWT-rP-x2K">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1771,11 +1771,23 @@
                                     <action selector="IBcheckauto:" target="XfG-lQ-9wD" id="KU4-Fd-k4T"/>
                                 </connections>
                             </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hnC-oQ-xRz">
+                                <rect key="frame" x="7" y="52" width="207" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="check" title="unknow type use NSString?" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="NSY-Jv-to8">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="Nullcheckauto:" target="XfG-lQ-9wD" id="Cnw-RH-aOO"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="IBCheckBtn" destination="7pu-nj-Ttd" id="hwg-ZB-wi3"/>
                         <outlet property="InputTextView" destination="0ym-RJ-AJo" id="E7r-gp-vbj"/>
+                        <outlet property="NullCheckBtn" destination="hnC-oQ-xRz" id="Un4-kN-cRn"/>
                         <outlet property="OutputTextView" destination="Wca-LT-zLB" id="AsJ-qk-BdP"/>
                         <outlet property="RootNameField" destination="lny-J6-X9V" id="H8n-Hq-8M3"/>
                     </connections>

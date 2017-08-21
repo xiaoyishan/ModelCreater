@@ -16,6 +16,7 @@
 @property (unsafe_unretained) IBOutlet NSTextView *OutputTextView;
 @property (weak) IBOutlet NSTextField *RootNameField;
 @property (weak) IBOutlet NSButton *IBCheckBtn;
+@property (weak) IBOutlet NSButton *NullCheckBtn;
 
 
 @end

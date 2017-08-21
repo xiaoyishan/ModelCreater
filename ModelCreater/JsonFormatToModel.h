@@ -33,7 +33,7 @@ typedef NS_ENUM(NSUInteger, NoteLanguage) {
 }
 
 // ->model
--(NSString*)TranslateToModelCode:(NSString*)json RootClassName:(NSString*)className;
+-(NSString*)TranslateToModelCode:(NSString*)json RootClassName:(NSString*)className showNull:(BOOL)hasNull;
 // ->view
 -(NSString*)TranslateToViewCode:(NSString*)json HasIB:(BOOL)IB;
 

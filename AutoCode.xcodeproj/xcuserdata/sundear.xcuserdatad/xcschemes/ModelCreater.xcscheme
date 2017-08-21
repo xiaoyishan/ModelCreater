@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "216CA6DE1F445025009D5849"
-            BuildableName = "ModelCreater.app"
-            BlueprintName = "ModelCreater"
-            ReferencedContainer = "container:ModelCreater.xcodeproj">
+            BuildableName = "AutoCode.app"
+            BlueprintName = "AutoCode"
+            ReferencedContainer = "container:AutoCode.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "216CA6DE1F445025009D5849"
-            BuildableName = "ModelCreater.app"
-            BlueprintName = "ModelCreater"
-            ReferencedContainer = "container:ModelCreater.xcodeproj">
+            BuildableName = "AutoCode.app"
+            BlueprintName = "AutoCode"
+            ReferencedContainer = "container:AutoCode.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
