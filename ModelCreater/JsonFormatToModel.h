@@ -30,6 +30,7 @@ typedef NS_ENUM(NSUInteger, NoteLanguage) {
 @interface JsonFormatToModel : NSObject{
     NSString *ModelStr;
     NSString *ViewStr;
+    
 }
 
 // ->model

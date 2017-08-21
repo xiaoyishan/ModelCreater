@@ -18,7 +18,7 @@ const NSString *FormateArr  = @"@property (nonatomic, strong) NSArray  *";
 const NSString *FormateDic  = @"@property (nonatomic, strong) NSDictionary *";
 
 const NSString *FormateNull  = @"@property (nonatomic,strong) NSObject  *";
-
+const NSString *FormateBOOL  = @"@property (nonatomic,strong) BOOL  ";
 
 const NSString *UIFormateLabel  = @"@property (nonatomic, weak) UILabel *";
 const NSString *UIFormateField  = @"@property (nonatomic, weak) UITextField *";
@@ -79,12 +79,23 @@ const NSString *UIFormateButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBu
             CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", CustomDic(key),key,CurrentStr];
         }
         if ([Dic[key] isKindOfClass:[NSNumber class]]) {
-            CGFloat X = [Dic[key] floatValue];
-            if (X>floor(X)) {
-                CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormateFlot,key,CurrentStr];
+
+            //dell __NSCFBoolean (false...)
+            if ([Dic[key] isKindOfClass:[@(YES) class]]){
+
+                CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormateBOOL,key,CurrentStr];
+
             }else{
-                CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormateInt,key,CurrentStr];
+
+                CGFloat X = [Dic[key] floatValue];
+                if (X>floor(X)) {
+                    CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormateFlot,key,CurrentStr];
+                }else{
+                    CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormateInt,key,CurrentStr];
+                }
             }
+
+
         }
 
         // unknow class use nsobject
