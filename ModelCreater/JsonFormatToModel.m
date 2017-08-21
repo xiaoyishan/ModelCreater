@@ -17,14 +17,14 @@ const NSString *FormateStr  = @"@property (nonatomic, copy)   NSString *";
 const NSString *FormateArr  = @"@property (nonatomic, strong) NSArray  *";
 const NSString *FormateDic  = @"@property (nonatomic, strong) NSDictionary *";
 
-const NSString *FormateNull  = @"@property (nonatomic,strong) NSObject  *";
-const NSString *FormateBOOL  = @"@property (nonatomic,assign) BOOL  ";
+const NSString *FormateNull  = @"@property (nonatomic, strong) NSObject  *";
+const NSString *FormateBOOL  = @"@property (nonatomic, assign) BOOL  ";
 
-const NSString *UIFormateLabel  = @"@property (nonatomic, weak) UILabel *";
+const NSString *UIFormateLabel  = @"@property (nonatomic, weak) UILabel  *";
 const NSString *UIFormateField  = @"@property (nonatomic, weak) UITextField *";
 const NSString *UIFormateButton  = @"@property (nonatomic, weak) UIButton *";
 
-const NSString *UIFormateLabelIB  = @"@property (nonatomic, weak) IBOutlet UILabel *";
+const NSString *UIFormateLabelIB  = @"@property (nonatomic, weak) IBOutlet UILabel  *";
 const NSString *UIFormateFieldIB  = @"@property (nonatomic, weak) IBOutlet UITextField *";
 const NSString *UIFormateButtonIB  = @"@property (nonatomic, weak) IBOutlet UIButton *";
 
