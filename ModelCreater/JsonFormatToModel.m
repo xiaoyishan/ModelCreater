@@ -56,6 +56,15 @@ const NSString *UIFormateButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBu
 -(NSString*)TranslateToModelCode:(NSString*)json RootClassName:(NSString*)className showNull:(BOOL)hasNull{
     NSDictionary *Dic = [self JsonToDic:json];
 
+    //if json is array
+    NSData *jsonData = [json dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    id Data = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
+    if ([Data isKindOfClass:[NSArray class]]) {
+        Dic = [(NSArray*)Data firstObject];
+    }
+
+
     NSString *CurrentStr = @"";
 
     for (NSString *key in Dic.allKeys) {
