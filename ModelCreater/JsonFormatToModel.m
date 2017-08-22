@@ -34,7 +34,7 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
 #define     CustomDic(x)    [NSString stringWithFormat:@"@property (nonatomic, strong) %@Model *", x]
 
 #define     Interface(name)    [NSString stringWithFormat:@"@interface %@Model : NSObject", name]
-#define     implement(name)    [NSString stringWithFormat:@"@implementation %@Model ", name]
+#define     implement(name)    [NSString stringWithFormat:@"@implementation %@ ", name]
 
 
 
