@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSMutableAttributedString+CodeFormat.h"
+
 
 typedef NS_ENUM(NSUInteger, NoteType) {
     NoteTypeDefault ,       // "//"
@@ -30,11 +32,12 @@ typedef NS_ENUM(NSUInteger, NoteLanguage) {
 @interface JsonFormatToModel : NSObject{
     NSString *ModelStr;
     NSString *ViewStr;
+    NSMutableArray *AllModelName;
     
 }
 
 // ->model
--(NSString*)TranslateToModelCode:(NSString*)json RootClassName:(NSString*)className showNull:(BOOL)hasNull;
+-(NSMutableAttributedString*)TranslateToModelCode:(NSString*)json RootClassName:(NSString*)className showNull:(BOOL)hasNull;
 // ->view
 -(NSString*)TranslateToViewCode:(NSString*)json HasIB:(BOOL)IB;
 

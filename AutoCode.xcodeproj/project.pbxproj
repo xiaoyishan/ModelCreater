@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2137C9C71F4BCA8600D718E9 /* NSMutableAttributedString+CodeFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 2137C9C61F4BCA8600D718E9 /* NSMutableAttributedString+CodeFormat.m */; };
+		2137C9CA1F4BD93600D718E9 /* NSTextView+MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2137C9C91F4BD93600D718E9 /* NSTextView+MyViewController.m */; };
 		216CA6E41F445025009D5849 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 216CA6E31F445025009D5849 /* AppDelegate.m */; };
 		216CA6E71F445025009D5849 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 216CA6E61F445025009D5849 /* main.m */; };
 		216CA6EA1F445025009D5849 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 216CA6E91F445025009D5849 /* ViewController.m */; };
@@ -19,6 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2137C9C51F4BCA8600D718E9 /* NSMutableAttributedString+CodeFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+CodeFormat.h"; sourceTree = "<group>"; };
+		2137C9C61F4BCA8600D718E9 /* NSMutableAttributedString+CodeFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+CodeFormat.m"; sourceTree = "<group>"; };
+		2137C9C81F4BD93600D718E9 /* NSTextView+MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+MyViewController.h"; sourceTree = "<group>"; };
+		2137C9C91F4BD93600D718E9 /* NSTextView+MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+MyViewController.m"; sourceTree = "<group>"; };
 		216CA6DF1F445025009D5849 /* AutoCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		216CA6E21F445025009D5849 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		216CA6E31F445025009D5849 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -100,6 +106,10 @@
 				5A43E31B1F4899F1003EF606 /* NSView+MJExtension.m */,
 				5A43E31C1F4899F1003EF606 /* NSWindow+MJExtension.h */,
 				5A43E31D1F4899F1003EF606 /* NSWindow+MJExtension.m */,
+				2137C9C51F4BCA8600D718E9 /* NSMutableAttributedString+CodeFormat.h */,
+				2137C9C61F4BCA8600D718E9 /* NSMutableAttributedString+CodeFormat.m */,
+				2137C9C81F4BD93600D718E9 /* NSTextView+MyViewController.h */,
+				2137C9C91F4BD93600D718E9 /* NSTextView+MyViewController.m */,
 			);
 			path = Refer;
 			sourceTree = "<group>";
@@ -182,9 +192,11 @@
 			files = (
 				216CA6EA1F445025009D5849 /* ViewController.m in Sources */,
 				5ABA1FC91F4963700009EB06 /* RootWindowC.m in Sources */,
+				2137C9C71F4BCA8600D718E9 /* NSMutableAttributedString+CodeFormat.m in Sources */,
 				216CA6F81F445459009D5849 /* JsonFormatToModel.m in Sources */,
 				216CA6E71F445025009D5849 /* main.m in Sources */,
 				5A43E31F1F4899F1003EF606 /* NSView+MJExtension.m in Sources */,
+				2137C9CA1F4BD93600D718E9 /* NSTextView+MyViewController.m in Sources */,
 				216CA6E41F445025009D5849 /* AppDelegate.m in Sources */,
 				5A43E3201F4899F1003EF606 /* NSWindow+MJExtension.m in Sources */,
 			);

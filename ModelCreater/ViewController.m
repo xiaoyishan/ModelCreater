@@ -23,11 +23,18 @@
 }
 
 - (IBAction)ToModel:(id)sender {
+
     NSString *json = [_InputTextView accessibilityValue];
-    _OutputTextView.accessibilityValue = [[JsonFormatToModel new] TranslateToModelCode:json RootClassName:_RootNameField.stringValue showNull:_NullCheckBtn.state];
+
+    NSMutableAttributedString *str = [[JsonFormatToModel new] TranslateToModelCode:json RootClassName:_RootNameField.stringValue showNull:_NullCheckBtn.state];
+
+
+    _OutputTextView.accessibilityValue = [NSString stringWithFormat:@"%@",str];
+
     [self JsonToDic:json];
 }
 - (IBAction)ToView:(id)sender {
+    [_InputTextView removeAttachments];
     NSString *json = [_InputTextView accessibilityValue];
     _OutputTextView.accessibilityValue = [[JsonFormatToModel new] TranslateToViewCode:json HasIB:_IBCheckBtn.state];
     [self JsonToDic:json];
@@ -41,13 +48,20 @@
 
 
 - (IBAction)JsonFormatCheck:(id)sender {
+    [_InputTextView removeAttachments];
+
     NSString *json = [NSString stringWithFormat:@"%@",[_InputTextView accessibilityValue]];
     _InputTextView.accessibilityValue = json;
+
 }
 
 
 //json -> dic
 - (NSDictionary*)JsonToDic:(NSString*)json{
+
+    //remove rich text format
+    [_InputTextView removeAttachments];
+    _InputTextView.accessibilityValue = json;
 
     NSData *jsonData = [json dataUsingEncoding:NSUTF8StringEncoding];
     NSError *err;

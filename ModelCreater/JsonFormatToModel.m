@@ -47,13 +47,14 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
     if (self) {
         ModelStr = @"";
         ViewStr =  @"";
+        AllModelName = [NSMutableArray new];
     }
     return self;
 }
 
 
 
--(NSString*)TranslateToModelCode:(NSString*)json RootClassName:(NSString*)className showNull:(BOOL)hasNull{
+-(NSMutableAttributedString*)TranslateToModelCode:(NSString*)json RootClassName:(NSString*)className showNull:(BOOL)hasNull{
     NSDictionary *Dic = [self JsonToDic:json];
 
     //if json is array
@@ -145,11 +146,12 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
     for (NSString *str in ImplentArr) {
         NSString *name = [str componentsSeparatedByString:@" "].firstObject;
         implementStr = [NSString stringWithFormat:@"\n//\n%@ \n%@\n%@" ,implement(name), End, implementStr];
+        [AllModelName addObject:[NSString stringWithFormat:@"%@Model",name]];
     }
 
+    NSString *resultStr = [ModelStr stringByAppendingString:implementStr];
 
-
-    return [ModelStr stringByAppendingString:implementStr];
+    return [[NSMutableAttributedString new] YS_ColorStr:resultStr Font:14 CustomNameArr:AllModelName];
 
 
 }
@@ -213,6 +215,8 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
     return dic;
 }
+
+
 
 
 @end

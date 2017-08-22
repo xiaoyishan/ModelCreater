@@ -10,6 +10,7 @@
 #import "JsonFormatToModel.h"
 #import "NSWindow+MJExtension.h"
 #import "NSView+MJExtension.h"
+#import "NSTextView+MyViewController.h"
 
 @interface ViewController : NSViewController
 @property (unsafe_unretained) IBOutlet NSTextView *InputTextView;
@@ -17,7 +18,6 @@
 @property (weak) IBOutlet NSTextField *RootNameField;
 @property (weak) IBOutlet NSButton *IBCheckBtn;
 @property (weak) IBOutlet NSButton *NullCheckBtn;
-
 
 @end
 
