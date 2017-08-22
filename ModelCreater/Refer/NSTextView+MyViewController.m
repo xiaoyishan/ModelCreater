@@ -76,25 +76,25 @@
     [attrString endEditing];
 }
 
-- (void)setRichText:(BOOL)flag {
-    NSDictionary *textAttributes;
-
-    BOOL isRichText = flag;
-
-    if (!isRichText) [self removeAttachments];
-
-    [self setRichText:isRichText];
-    [self setUsesRuler:isRichText];    /* If NO, this correctly gets rid
-                                               of the ruler if it was up */
-    if (isRichText && NO)
-        [self setRulerVisible:YES];    /* Show ruler if rich, and desired */
-    [self setImportsGraphics:isRichText];
-
-    textAttributes = [self defaultTextAttributes:isRichText];
-
-    if ([[self textStorage] length]) {
-        [[self textStorage] setAttributes:textAttributes range: NSMakeRange(0,[[self textStorage] length])];
-    }
-    [self setTypingAttributes:textAttributes];
-}
+//- (void)setRichText:(BOOL)flag {
+//    NSDictionary *textAttributes;
+//
+//    BOOL isRichText = flag;
+//
+//    if (!isRichText) [self removeAttachments];
+//
+//    [self setRichText:isRichText];
+//    [self setUsesRuler:isRichText];    /* If NO, this correctly gets rid
+//                                               of the ruler if it was up */
+//    if (isRichText && NO)
+//        [self setRulerVisible:YES];    /* Show ruler if rich, and desired */
+//    [self setImportsGraphics:isRichText];
+//
+//    textAttributes = [self defaultTextAttributes:isRichText];
+//
+//    if ([[self textStorage] length]) {
+//        [[self textStorage] setAttributes:textAttributes range: NSMakeRange(0,[[self textStorage] length])];
+//    }
+//    [self setTypingAttributes:textAttributes];
+//}
 @end

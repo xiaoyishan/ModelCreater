@@ -11,5 +11,5 @@
 @interface NSTextView (MyViewController)
 - (NSDictionary *)defaultTextAttributes:(BOOL)forRichText;
 - (void)removeAttachments;
-- (void)setRichText:(BOOL)flag;
+//- (void)setRichText:(BOOL)flag;
 @end

@@ -13,53 +13,167 @@
 
 -(NSMutableAttributedString*)YS_ColorStr:(NSString*)str Font:(int)font CustomNameArr:(NSArray*)TypeArr{
 
-    //blue
-    NSArray *Ivar = @[@"@property (nonatomic,",
-                      @"weak)",
-                      @"assign)",
-                      @"strong)",
-                      @"copy)",
-                      @"unsafe_unretained)",
-                      @"nonatomic)",
-                      @"IBOutlet",
-                      @"@end",
-                      @"@implementation",
-                      @"@interface",
-                      ];
-
-    //dark green
-    NSMutableArray *Type = @[@"//",
-                             @"IBOutlet",
-                             @"NSInteger",
-                             @"CGFloat",
-                             @"NSString",
-                             @"NSArray",
-                             @"NSDictionary",
-                             @"NSObject",
-                             @"BOOL",
-                             @"UILabel",
-                             @"UITextField",
-                             @"UIButton",
-                             ].mutableCopy;
-    if(TypeArr)[Type addObjectsFromArray:TypeArr];
+    NSColor *IvarColor = [NSColor colorWithRed:43/255.0 green:131/255.0 blue:159/255.0 alpha:1];
+    NSColor *NoteColor = [NSColor colorWithRed:15/255.0 green:112/255.0 blue:1/255.0 alpha:1];
 
 
-    NSMutableAttributedString *attributeString  = [[NSMutableAttributedString alloc]initWithString:str];
-    for (int i = 0; i < str.length; i ++) {
-        NSString *a = [str substringWithRange:NSMakeRange(i, 1)];
+//    //blue
+//    NSArray *Ivar = @[@"@property (nonatomic,",
+//                      @"weak)",
+//                      @"assign)",
+//                      @"strong)",
+//                      @"copy)",
+//                      @"unsafe_unretained)",
+//                      @"nonatomic)",
+//                      @"IBOutlet",
+//                      @"@end",
+//                      @"@implementation",
+//                      @"@interface",
+//                      ];
+//
+//    //dark green
+//    NSMutableArray *Type = @[@"//",
+//                             @"IBOutlet",
+//                             @"NSInteger",
+//                             @"CGFloat",
+//                             @"NSString",
+//                             @"NSArray",
+//                             @"NSDictionary",
+//                             @"NSObject",
+//                             @"BOOL",
+//                             @"UILabel",
+//                             @"UITextField",
+//                             @"UIButton",
+//                             ].mutableCopy;
+//    if(TypeArr)[Type addObjectsFromArray:TypeArr];
 
-        if ([Ivar containsObject:a]) {
-            [attributeString setAttributes:@{NSForegroundColorAttributeName:[NSColor blueColor],
-                                             NSFontAttributeName:[NSFont systemFontOfSize:font]}
-                                     range:NSMakeRange(i, 1)];
+
+
+    // property type List
+    NSArray *types = @[@"NSInteger",
+                       @"CGFloat",
+                       @"NSString",
+                       @"NSArray",
+                       @"NSDictionary",
+                       @"NSObject",
+                       @"BOOL",
+                       @"UILabel",
+                       @"UITextField",
+                       @"UIButton",
+                       ];
+
+
+
+    NSMutableAttributedString *attributeString  = [NSMutableAttributedString new];
+    [attributeString beginEditing];
+
+
+    NSArray *attArr = [str componentsSeparatedByString:@"\n"];
+
+    for (int k=0; k<attArr.count; k++) {
+        NSString *subString = [NSString stringWithFormat:@"%@\n",attArr[k]];
+        NSMutableAttributedString *subAtt = [[NSMutableAttributedString alloc]initWithString:subString];
+
+        // property
+        if ([subString componentsSeparatedByString:@")"].count==2) {
+
+            NSInteger propertyLength = [subString componentsSeparatedByString:@")"].firstObject.length+1;
+            [subAtt addAttribute:NSForegroundColorAttributeName
+                                    value:[NSColor blueColor]
+                                    range:NSMakeRange(0, propertyLength)];
+
+
+            // green type
+            for (NSString *key in types) {
+                if ([subString containsString:key]) {
+
+                    NSInteger length = [subString componentsSeparatedByString:key].firstObject.length + key.length - propertyLength;
+                    [subAtt addAttribute:NSForegroundColorAttributeName
+                                   value:IvarColor
+                                   range:NSMakeRange(propertyLength, length)];
+                }
+            }
+
+            //custom TypeArr
+            if ([subString containsString:@"Model *"]) {
+
+                NSInteger modelP = [subString componentsSeparatedByString:@"Model *"].firstObject.length;
+                NSInteger location;
+                // “<” " "
+                if ([subString containsString:@"<"]) {
+                    location = [subString componentsSeparatedByString:@"<"].firstObject.length+1;
+                }else{
+                    location = [subString componentsSeparatedByString:@") "].firstObject.length+1;
+                }
+
+                [subAtt addAttribute:NSForegroundColorAttributeName
+                               value:IvarColor
+                               range:NSMakeRange(location, modelP-location+5)];
+            }
+
+
+
+
         }
 
-        if ([Type containsObject:a]) {
-            [attributeString setAttributes:@{NSForegroundColorAttributeName:[NSColor greenColor],
-                                             NSFontAttributeName:[NSFont systemFontOfSize:font]}
-                                     range:NSMakeRange(i, 1)];
+
+
+
+
+
+
+
+        // interface
+        if ([subString containsString:@"@interface"]) {
+            [subAtt addAttribute:NSForegroundColorAttributeName
+                           value:[NSColor blueColor]
+                           range:NSMakeRange(0, 10)];
+            [subAtt addAttribute:NSForegroundColorAttributeName
+                           value:IvarColor
+                           range:NSMakeRange(10, subString.length-10)];
+            [subAtt addAttribute:NSForegroundColorAttributeName
+                           value:[NSColor blackColor]
+                           range:NSMakeRange([subString componentsSeparatedByString:@":"].firstObject.length, 1)];
+
         }
+        // implementation
+        if ([subString containsString:@"@implementation"]) {
+            [subAtt addAttribute:NSForegroundColorAttributeName
+                           value:[NSColor blueColor]
+                           range:NSMakeRange(0, 15)];
+            [subAtt addAttribute:NSForegroundColorAttributeName
+                           value:IvarColor
+                           range:NSMakeRange(15, subString.length-15)];
+        }
+        // end
+        if ([subString containsString:@"@end"]) {
+            [subAtt addAttribute:NSForegroundColorAttributeName
+                           value:[NSColor blueColor]
+                           range:NSMakeRange(0, 4)];
+        }
+
+        //note
+        if ([subString containsString:@"//"]) {
+            [subAtt addAttribute:NSForegroundColorAttributeName
+                           value:NoteColor
+                           range:NSMakeRange([subString componentsSeparatedByString:@"//"].firstObject.length, 3)];
+        }
+        if ([subString containsString:@"/**/"]) {
+            [subAtt addAttribute:NSForegroundColorAttributeName
+                           value:NoteColor
+                           range:NSMakeRange([subString componentsSeparatedByString:@"/**/"].firstObject.length, 4)];
+        }
+
+
+
+
+        [attributeString appendAttributedString:subAtt];
     }
+
+
+
+
+    [attributeString endEditing];
 
     return attributeString;
 }

@@ -146,7 +146,10 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
     for (NSString *str in ImplentArr) {
         NSString *name = [str componentsSeparatedByString:@" "].firstObject;
         implementStr = [NSString stringWithFormat:@"\n//\n%@ \n%@\n%@" ,implement(name), End, implementStr];
-        [AllModelName addObject:[NSString stringWithFormat:@"%@Model",name]];
+
+        // add model name
+        NSString *modelName = [NSString stringWithFormat:@"%@Model",name];
+        if(![AllModelName containsObject:modelName])[AllModelName addObject:modelName];
     }
 
     NSString *resultStr = [ModelStr stringByAppendingString:implementStr];

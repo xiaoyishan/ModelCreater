@@ -14,6 +14,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
+    //clear fontColor
+    [_InputTextView removeAttachments];
+    _InputTextView.accessibilityValue = _InputTextView.accessibilityValue;
 }
 
 
@@ -27,16 +30,19 @@
     NSString *json = [_InputTextView accessibilityValue];
 
     NSMutableAttributedString *str = [[JsonFormatToModel new] TranslateToModelCode:json RootClassName:_RootNameField.stringValue showNull:_NullCheckBtn.state];
+    _OutPutFeild.attributedStringValue = str;
+    
 
 
-    _OutputTextView.accessibilityValue = [NSString stringWithFormat:@"%@",str];
+
 
     [self JsonToDic:json];
 }
 - (IBAction)ToView:(id)sender {
     [_InputTextView removeAttachments];
     NSString *json = [_InputTextView accessibilityValue];
-    _OutputTextView.accessibilityValue = [[JsonFormatToModel new] TranslateToViewCode:json HasIB:_IBCheckBtn.state];
+    _OutPutFeild.accessibilityValue = [[JsonFormatToModel new] TranslateToViewCode:json HasIB:_IBCheckBtn.state];
+
     [self JsonToDic:json];
 }
 - (IBAction)IBcheckauto:(id)sender {
@@ -74,16 +80,22 @@
     return dic;
 }
 
-- (void) WarringForHold
-{
+
+
+- (void) WarringForHold{
     NSAlert *alert = [[NSAlert alloc] init];
     [alert addButtonWithTitle:@"OK"];
     [alert setMessageText:@"tranlate failed"];
     [alert setInformativeText:@"Please check json format is OK?"];
     [alert setAlertStyle:NSAlertStyleWarning];
     [alert beginSheetModalForWindow:self.view.window completionHandler:nil];
-
 }
 
 
 @end
+
+
+
+
+
+
