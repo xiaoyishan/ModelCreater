@@ -28,6 +28,9 @@
 
 @property (weak) IBOutlet NSTextField *OutPutFeild;
 
+@property (weak) IBOutlet NSPopUpButton *NoteTypeMenu;
+@property (weak) IBOutlet NSPopUpButton *NoteDirectionMenu;
+
 
 @end
 

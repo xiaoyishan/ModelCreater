@@ -15,8 +15,8 @@ typedef NS_ENUM(NSUInteger, NoteType) {
     NoteTypeDocument,       // "/**/"
 };
 typedef NS_ENUM(NSUInteger, NoteDirection) {
-    NoteDirectionTop ,      // "↑"
     NoteDirectionRight,     // "→"
+    NoteDirectionTop ,      // "↑"
 };
 typedef NS_ENUM(NSUInteger, NoteLanguage) {
     NoteLanguageDefault ,       // 简体中文
@@ -37,8 +37,15 @@ typedef NS_ENUM(NSUInteger, NoteLanguage) {
 }
 
 // ->model
--(NSMutableAttributedString*)TranslateToModelCode:(NSString*)json RootClassName:(NSString*)className showNull:(BOOL)hasNull;
+-(NSMutableAttributedString*)TranslateToModelCode:(NSString*)json
+                                    RootClassName:(NSString*)className
+                                         showNull:(BOOL)hasNull
+                                         NoteType:(NoteType)noteType
+                                    NoteDirection:(NoteDirection)noteDirection;
 // ->view
--(NSMutableAttributedString*)TranslateToViewCode:(NSString*)json HasIB:(BOOL)IB;
+-(NSMutableAttributedString*)TranslateToViewCode:(NSString*)json
+                                           HasIB:(BOOL)IB
+                                        NoteType:(NoteType)noteType
+                                   NoteDirection:(NoteDirection)noteDirection;
 
 @end

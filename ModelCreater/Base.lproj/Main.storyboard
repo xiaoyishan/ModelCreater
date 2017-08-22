@@ -731,20 +731,22 @@
                                     <action selector="JsonFormatCheck:" target="XfG-lQ-9wD" id="XwZ-dy-TGd"/>
                                 </connections>
                             </button>
-                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gK8-rm-7Ta">
-                                <rect key="frame" x="97" y="0.0" width="126" height="26"/>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L2m-me-qHk">
+                                <rect key="frame" x="152" y="24" width="102" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <popUpButtonCell key="cell" type="push" title="New window" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="BZA-Lw-U1I" id="ADt-1f-g91">
+                                <popUpButtonCell key="cell" type="push" title="user &quot;//&quot;" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="bCK-xY-8pe" id="KXg-LV-Zjh">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" id="Jt8-cL-7xi">
+                                    <menu key="menu" id="t02-UB-w9r">
                                         <items>
-                                            <menuItem title="Current window" id="OaO-nv-ybl"/>
-                                            <menuItem title="New window" state="on" id="BZA-Lw-U1I"/>
-                                            <menuItem title="Item 3" id="NCq-ET-aPl"/>
+                                            <menuItem title="user &quot;//&quot;" state="on" id="bCK-xY-8pe"/>
+                                            <menuItem title="Note &quot;/**/&quot;" id="f3m-eT-RMo"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <connections>
+                                    <action selector="NoteTypeMenuauto:" target="XfG-lQ-9wD" id="UyU-Q7-4Gs"/>
+                                </connections>
                             </popUpButton>
                             <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RB6-ld-oI7">
                                 <rect key="frame" x="5" y="108" width="280" height="486"/>
@@ -1617,11 +1619,30 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gK8-rm-7Ta">
+                                <rect key="frame" x="152" y="0.0" width="102" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <popUpButtonCell key="cell" type="push" title="Note Right" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="OaO-nv-ybl" id="ADt-1f-g91">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="Jt8-cL-7xi">
+                                        <items>
+                                            <menuItem title="Note Right" state="on" id="OaO-nv-ybl"/>
+                                            <menuItem title="Note Top" id="BZA-Lw-U1I"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="NoteDirectionMenuauto:" target="XfG-lQ-9wD" id="Xqj-bZ-ud8"/>
+                                </connections>
+                            </popUpButton>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="IBCheckBtn" destination="7pu-nj-Ttd" id="hwg-ZB-wi3"/>
                         <outlet property="InputTextView" destination="0ym-RJ-AJo" id="E7r-gp-vbj"/>
+                        <outlet property="NoteDirectionMenu" destination="gK8-rm-7Ta" id="QHr-Hp-Awi"/>
+                        <outlet property="NoteTypeMenu" destination="L2m-me-qHk" id="MGC-58-efo"/>
                         <outlet property="NullCheckBtn" destination="hnC-oQ-xRz" id="Un4-kN-cRn"/>
                         <outlet property="OutPutFeild" destination="ceg-iq-NMd" id="igH-bH-HJz"/>
                         <outlet property="RootNameField" destination="lny-J6-X9V" id="H8n-Hq-8M3"/>

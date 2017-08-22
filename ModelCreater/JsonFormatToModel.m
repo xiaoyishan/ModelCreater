@@ -11,6 +11,7 @@
 
 const NSString *End  = @"@end";
 
+
 const NSString *FormatInt  = @"@property (nonatomic, assign) NSInteger ";
 const NSString *FormatFlot = @"@property (nonatomic, assign) CGFloat   ";
 const NSString *FormatStr  = @"@property (nonatomic, copy)   NSString *";
@@ -27,7 +28,6 @@ const NSString *UIFormatButton  = @"@property (nonatomic, weak) UIButton *";
 const NSString *UIFormatLabelIB  = @"@property (nonatomic, weak) IBOutlet UILabel  *";
 const NSString *UIFormatFieldIB  = @"@property (nonatomic, weak) IBOutlet UITextField *";
 const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIButton *";
-
 
 
 #define     CustomArr(x)    [NSString stringWithFormat:@"@property (nonatomic, strong) NSArray<%@Model *> *", x]
@@ -54,7 +54,11 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
 
 
 
--(NSMutableAttributedString*)TranslateToModelCode:(NSString*)json RootClassName:(NSString*)className showNull:(BOOL)hasNull{
+-(NSMutableAttributedString*)TranslateToModelCode:(NSString*)json
+                                    RootClassName:(NSString*)className
+                                         showNull:(BOOL)hasNull
+                                         NoteType:(NoteType)noteType
+                                    NoteDirection:(NoteDirection)noteDirection{
     NSDictionary *Dic = [self JsonToDic:json];
 
     //if json is array
@@ -66,70 +70,145 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
     }
 
 
+    NSString *NoteStr = @"//";
+    if(noteType==NoteTypeDocument)NoteStr = @"/**/";
+
+    
+
     NSString *CurrentStr = @"";
 
     for (NSString *key in Dic.allKeys) {
 
-        if ([Dic[key] isKindOfClass:[NSString class]]) {
-            CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormatStr,key,CurrentStr];
-        }
-        if ([Dic[key] isKindOfClass:[NSArray class]]) {
-            CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", CustomArr(key),key,CurrentStr];
-        }
-        if ([Dic[key] isKindOfClass:[NSDictionary class]]) {
-            CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", CustomDic(key),key,CurrentStr];
-        }
-        if ([Dic[key] isKindOfClass:[NSNumber class]]) {
 
-            //dell __NSCFBoolean (false...)
-            if ([Dic[key] isKindOfClass:[@(YES) class]]){
+        // NoteDirectionRight   "→"
+        if (noteDirection == NoteDirectionRight) {
 
-                CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormatBOOL,key,CurrentStr];
 
-            }else{
 
-                CGFloat X = [Dic[key] floatValue];
-                if (X>floor(X)) {
-                    CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormatFlot,key,CurrentStr];
+            if ([Dic[key] isKindOfClass:[NSString class]]) {
+                CurrentStr = [NSString stringWithFormat:@"%@%@; %@ \n%@", FormatStr, key,NoteStr,CurrentStr];
+            }
+            if ([Dic[key] isKindOfClass:[NSArray class]]) {
+                CurrentStr = [NSString stringWithFormat:@"%@%@; %@ \n%@", CustomArr(key), key,NoteStr,CurrentStr];
+            }
+            if ([Dic[key] isKindOfClass:[NSDictionary class]]) {
+                CurrentStr = [NSString stringWithFormat:@"%@%@; %@ \n%@", CustomDic(key), key,NoteStr,CurrentStr];
+            }
+            if ([Dic[key] isKindOfClass:[NSNumber class]]) {
+
+                //dell __NSCFBoolean (false...)
+                if ([Dic[key] isKindOfClass:[@(YES) class]]){
+
+                    CurrentStr = [NSString stringWithFormat:@"%@%@; %@ \n%@", FormatBOOL,key, NoteStr,CurrentStr];
+
                 }else{
-                    CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormatInt,key,CurrentStr];
+
+                    CGFloat X = [Dic[key] floatValue];
+                    if (X>floor(X)) {
+                        CurrentStr = [NSString stringWithFormat:@"%@%@; %@ \n%@", FormatFlot,key, NoteStr,CurrentStr];
+                    }else{
+                        CurrentStr = [NSString stringWithFormat:@"%@%@; %@ \n%@", FormatInt,key, NoteStr,CurrentStr];
+                    }
+                }
+
+            }
+
+            // unknow class use nsobject
+            if (![Dic[key] isKindOfClass:[NSString class]] &&
+                ![Dic[key] isKindOfClass:[NSArray class]] &&
+                ![Dic[key] isKindOfClass:[NSDictionary class]] &&
+                ![Dic[key] isKindOfClass:[NSNumber class]]) {
+
+                //dell null and so on
+                if (hasNull) { // use "NSString" for the moment of custom setting
+                    CurrentStr = [NSString stringWithFormat:@"%@%@; %@//unknow \n%@", FormatStr,key, NoteStr,CurrentStr];
+                }else{
+                    CurrentStr = [NSString stringWithFormat:@"%@%@; %@//please manually modify \n%@", FormatNull,key, NoteStr,CurrentStr];
+                }
+                
+            }
+
+
+
+
+
+        }
+        // NoteDirectionRight   "↑"
+        if (noteDirection == NoteDirectionTop) {
+
+
+            if ([Dic[key] isKindOfClass:[NSString class]]) {
+                CurrentStr = [NSString stringWithFormat:@"%@\n%@%@;  \n%@", NoteStr, FormatStr,key,CurrentStr];
+            }
+            if ([Dic[key] isKindOfClass:[NSArray class]]) {
+                CurrentStr = [NSString stringWithFormat:@"%@\n%@%@;  \n%@", NoteStr, CustomArr(key),key,CurrentStr];
+            }
+            if ([Dic[key] isKindOfClass:[NSDictionary class]]) {
+                CurrentStr = [NSString stringWithFormat:@"%@\n%@%@;  \n%@", NoteStr, CustomDic(key),key,CurrentStr];
+            }
+            if ([Dic[key] isKindOfClass:[NSNumber class]]) {
+
+                //dell __NSCFBoolean (false...)
+                if ([Dic[key] isKindOfClass:[@(YES) class]]){
+
+                    CurrentStr = [NSString stringWithFormat:@"%@\n%@%@;  \n%@",  NoteStr,FormatBOOL,key,CurrentStr];
+
+                }else{
+
+                    CGFloat X = [Dic[key] floatValue];
+                    if (X>floor(X)) {
+                        CurrentStr = [NSString stringWithFormat:@"%@\n%@%@;  \n%@", NoteStr, FormatFlot,key,CurrentStr];
+                    }else{
+                        CurrentStr = [NSString stringWithFormat:@"%@\n%@%@;  \n%@", NoteStr, FormatInt,key,CurrentStr];
+                    }
+                }
+
+            }
+
+            // unknow class use nsobject
+            if (![Dic[key] isKindOfClass:[NSString class]] &&
+                ![Dic[key] isKindOfClass:[NSArray class]] &&
+                ![Dic[key] isKindOfClass:[NSDictionary class]] &&
+                ![Dic[key] isKindOfClass:[NSNumber class]]) {
+
+                //dell null and so on
+                if (hasNull) { // use "NSString" for the moment of custom setting
+                    CurrentStr = [NSString stringWithFormat:@"%@\n%@%@; //unknow \n%@", NoteStr, FormatStr,key,CurrentStr];
+                }else{
+                    CurrentStr = [NSString stringWithFormat:@"%@\n%@%@; //please manually modify \n%@", NoteStr, FormatNull,key,CurrentStr];
                 }
             }
 
 
-        }
 
-        // unknow class use nsobject
-        if (![Dic[key] isKindOfClass:[NSString class]] &&
-            ![Dic[key] isKindOfClass:[NSArray class]] &&
-            ![Dic[key] isKindOfClass:[NSDictionary class]] &&
-            ![Dic[key] isKindOfClass:[NSNumber class]]) {
 
-            //dell null and so on
-            if (hasNull) { // use "NSString" for the moment of custom setting
-                CurrentStr = [NSString stringWithFormat:@"%@%@; //unknow \n%@", FormatStr,key,CurrentStr];
-            }else{
-                CurrentStr = [NSString stringWithFormat:@"%@%@; //please manually modify \n%@", FormatNull,key,CurrentStr];
-            }
+
 
         }
-
     }
 
 
     if (![ModelStr containsString:CurrentStr]) {
         if(className.length==0)className=@"RootClass";
-        ModelStr = [NSString stringWithFormat:@"\n//\n%@\n%@%@\n%@",Interface(className),CurrentStr, End,ModelStr];
+        ModelStr = [NSString stringWithFormat:@"\n%@\n%@\n%@%@\n%@", NoteStr,Interface(className),CurrentStr, End,ModelStr];
     }
 
 
     for (NSString *key in Dic.allKeys) {
         if ([Dic[key] isKindOfClass:[NSDictionary class]]) {
-            [self TranslateToModelCode:[self Json:Dic[key]] RootClassName:key showNull:hasNull];
+            [self TranslateToModelCode:[self Json:Dic[key]]
+                         RootClassName:key
+                              showNull:hasNull
+                              NoteType:noteType
+                         NoteDirection:noteDirection];
         }
         if ([Dic[key] isKindOfClass:[NSArray class]]) {
             for (NSDictionary *ArrDic in Dic[key]) {
-                [self TranslateToModelCode:[self Json:ArrDic] RootClassName:key showNull:hasNull];
+                [self TranslateToModelCode:[self Json:ArrDic]
+                             RootClassName:key
+                                  showNull:hasNull
+                                  NoteType:noteType
+                             NoteDirection:noteDirection];
             }
         }
 
@@ -145,7 +224,7 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
 
     for (NSString *str in ImplentArr) {
         NSString *name = [str componentsSeparatedByString:@" "].firstObject;
-        implementStr = [NSString stringWithFormat:@"\n//\n%@ \n%@\n%@" ,implement(name), End, implementStr];
+        implementStr = [NSString stringWithFormat:@"\n%@\n%@ \n%@\n%@" ,NoteStr, implement(name), End, implementStr];
 
         // add model name
         NSString *modelName = [NSString stringWithFormat:@"%@Model",name];
@@ -164,15 +243,37 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
 
 
 // ->view
--(NSMutableAttributedString*)TranslateToViewCode:(NSString*)json HasIB:(BOOL)IB{
+-(NSMutableAttributedString*)TranslateToViewCode:(NSString*)json
+                                           HasIB:(BOOL)IB
+                                        NoteType:(NoteType)noteType
+                                   NoteDirection:(NoteDirection)noteDirection{
     NSDictionary *Dic = [self JsonToDic:json];
-    
+
+
+    NSString *NoteStr = @"//";
+    if(noteType==NoteTypeDocument)NoteStr = @"/**/";
+
+
     NSString *CurrentStr = @"";
+
+
     for (NSString *key in Dic.allKeys) {
-        if(IB){
-            CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", UIFormatLabelIB,key,CurrentStr];
-        }else{
-            CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", UIFormatLabel,key,CurrentStr];
+
+        // NoteDirectionRight   "→"
+        if (noteDirection == NoteDirectionRight){
+            if(IB){
+                CurrentStr = [NSString stringWithFormat:@"%@%@; %@ \n%@", UIFormatLabelIB,key, NoteStr,CurrentStr];
+            }else{
+                CurrentStr = [NSString stringWithFormat:@"%@%@; %@ \n%@", UIFormatLabel,key, NoteStr,CurrentStr];
+            }
+        }
+        // NoteDirectionRight   "↑"
+        if (noteDirection == NoteDirectionTop){
+            if(IB){
+                CurrentStr = [NSString stringWithFormat:@"%@\n%@%@;  \n%@", NoteStr,UIFormatLabelIB,key,CurrentStr];
+            }else{
+                CurrentStr = [NSString stringWithFormat:@"%@\n%@%@;  \n%@", NoteStr,UIFormatLabel,key,CurrentStr];
+            }
         }
     }
     
@@ -185,11 +286,17 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
     
     for (NSString *key in Dic.allKeys) {
         if ([Dic[key] isKindOfClass:[NSDictionary class]]) {
-            [self TranslateToViewCode:[self Json:Dic[key]] HasIB:IB];
+            [self TranslateToViewCode:[self Json:Dic[key]]
+                                HasIB:IB
+                             NoteType:noteType
+                        NoteDirection:noteDirection];
         }
         if ([Dic[key] isKindOfClass:[NSArray class]]) {
             for (NSDictionary *ArrDic in Dic[key]) {
-                [self TranslateToViewCode:[self Json:ArrDic] HasIB:IB];
+                [self TranslateToViewCode:[self Json:ArrDic]
+                                    HasIB:IB
+                                 NoteType:noteType
+                            NoteDirection:noteDirection];
             }
         }
         

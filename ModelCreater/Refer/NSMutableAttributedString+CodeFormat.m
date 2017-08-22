@@ -160,7 +160,7 @@
                            range:NSMakeRange(localtion, subString.length-localtion)];
         }
         if ([subString containsString:@"/**/"]) {
-            NSInteger localtion = [subString componentsSeparatedByString:@"//"].firstObject.length;
+            NSInteger localtion = [subString componentsSeparatedByString:@"/**/"].firstObject.length;
             [subAtt addAttribute:NSForegroundColorAttributeName
                            value:NoteColor
                            range:NSMakeRange(localtion, subString.length-localtion)];

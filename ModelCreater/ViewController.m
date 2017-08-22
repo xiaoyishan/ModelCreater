@@ -29,7 +29,11 @@
 
     NSString *json = [_InputTextView accessibilityValue];
 
-    NSMutableAttributedString *str = [[JsonFormatToModel new] TranslateToModelCode:json RootClassName:_RootNameField.stringValue showNull:_NullCheckBtn.state];
+    NSMutableAttributedString *str = [[JsonFormatToModel new] TranslateToModelCode:json
+                                                                     RootClassName:_RootNameField.stringValue
+                                                                          showNull:_NullCheckBtn.state
+                                                                          NoteType:_NoteTypeMenu.indexOfSelectedItem
+                                                                     NoteDirection:_NoteDirectionMenu.indexOfSelectedItem];
     _OutPutFeild.attributedStringValue = str;
     
     [self JsonToDic:json];
@@ -37,16 +41,34 @@
 - (IBAction)ToView:(id)sender {
     [_InputTextView removeAttachments];
     NSString *json = [_InputTextView accessibilityValue];
-    _OutPutFeild.attributedStringValue = [[JsonFormatToModel new] TranslateToViewCode:json HasIB:_IBCheckBtn.state];
+    _OutPutFeild.attributedStringValue = [[JsonFormatToModel new] TranslateToViewCode:json
+                                                                                HasIB:_IBCheckBtn.state
+                                                                             NoteType:_NoteTypeMenu.indexOfSelectedItem
+                                                                        NoteDirection:_NoteDirectionMenu.indexOfSelectedItem];
 
     [self JsonToDic:json];
 }
+
+
 - (IBAction)IBcheckauto:(id)sender {
     [self ToView:nil];
 }
 - (IBAction)Nullcheckauto:(id)sender {
     [self ToModel:nil];
 }
+
+- (IBAction)NoteTypeMenuauto:(id)sender {
+    if ([_OutPutFeild.stringValue containsString:@"UI"]) {
+        [self ToView:nil];
+    }else{
+        [self ToModel:nil];
+    }
+}
+- (IBAction)NoteDirectionMenuauto:(id)sender {
+    [self NoteTypeMenuauto:nil];
+}
+
+
 
 
 - (IBAction)JsonFormatCheck:(id)sender {
@@ -56,6 +78,7 @@
     _InputTextView.accessibilityValue = json;
 
 }
+
 
 
 //json -> dic
