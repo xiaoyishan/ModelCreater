@@ -32,16 +32,12 @@
     NSMutableAttributedString *str = [[JsonFormatToModel new] TranslateToModelCode:json RootClassName:_RootNameField.stringValue showNull:_NullCheckBtn.state];
     _OutPutFeild.attributedStringValue = str;
     
-
-
-
-
     [self JsonToDic:json];
 }
 - (IBAction)ToView:(id)sender {
     [_InputTextView removeAttachments];
     NSString *json = [_InputTextView accessibilityValue];
-    _OutPutFeild.accessibilityValue = [[JsonFormatToModel new] TranslateToViewCode:json HasIB:_IBCheckBtn.state];
+    _OutPutFeild.attributedStringValue = [[JsonFormatToModel new] TranslateToViewCode:json HasIB:_IBCheckBtn.state];
 
     [self JsonToDic:json];
 }

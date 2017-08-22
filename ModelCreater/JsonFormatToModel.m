@@ -164,7 +164,7 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
 
 
 // ->view
--(NSString*)TranslateToViewCode:(NSString*)json HasIB:(BOOL)IB{
+-(NSMutableAttributedString*)TranslateToViewCode:(NSString*)json HasIB:(BOOL)IB{
     NSDictionary *Dic = [self JsonToDic:json];
     
     NSString *CurrentStr = @"";
@@ -195,7 +195,7 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
         
         
     }
-    return ViewStr;
+    return [[NSMutableAttributedString new] YS_ColorStr:ViewStr Font:14 CustomNameArr:@[]];;
 }
 
 
