@@ -96,7 +96,7 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
             }
             if ([Dic[key] isKindOfClass:[NSNumber class]]) {
 
-                //dell __NSCFBoolean (false...)
+                //deal __NSCFBoolean (false...)
                 if ([Dic[key] isKindOfClass:[@(YES) class]]){
 
                     CurrentStr = [NSString stringWithFormat:@"%@%@; %@ \n%@", FormatBOOL,key, NoteStr,CurrentStr];
@@ -148,7 +148,7 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
             }
             if ([Dic[key] isKindOfClass:[NSNumber class]]) {
 
-                //dell __NSCFBoolean (false...)
+                //deal __NSCFBoolean (false...)
                 if ([Dic[key] isKindOfClass:[@(YES) class]]){
 
                     CurrentStr = [NSString stringWithFormat:@"%@\n%@%@;  \n%@",  NoteStr,FormatBOOL,key,CurrentStr];
