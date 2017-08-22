@@ -154,14 +154,16 @@
 
         //note
         if ([subString containsString:@"//"]) {
+            NSInteger localtion = [subString componentsSeparatedByString:@"//"].firstObject.length;
             [subAtt addAttribute:NSForegroundColorAttributeName
                            value:NoteColor
-                           range:NSMakeRange([subString componentsSeparatedByString:@"//"].firstObject.length, 3)];
+                           range:NSMakeRange(localtion, subString.length-localtion)];
         }
         if ([subString containsString:@"/**/"]) {
+            NSInteger localtion = [subString componentsSeparatedByString:@"//"].firstObject.length;
             [subAtt addAttribute:NSForegroundColorAttributeName
                            value:NoteColor
-                           range:NSMakeRange([subString componentsSeparatedByString:@"/**/"].firstObject.length, 4)];
+                           range:NSMakeRange(localtion, subString.length-localtion)];
         }
 
 
