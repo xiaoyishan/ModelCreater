@@ -65,7 +65,7 @@
     NSAlert *alert = [[NSAlert alloc] init];
     [alert addButtonWithTitle:@"OK"];
     [alert setMessageText:@"tranlate failed"];
-    [alert setInformativeText:@"Please check json formate is OK?"];
+    [alert setInformativeText:@"Please check json format is OK?"];
     [alert setAlertStyle:NSAlertStyleWarning];
     [alert beginSheetModalForWindow:self.view.window completionHandler:nil];
 

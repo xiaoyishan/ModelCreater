@@ -11,22 +11,22 @@
 
 const NSString *End  = @"@end";
 
-const NSString *FormateInt  = @"@property (nonatomic, assign) NSInteger ";
-const NSString *FormateFlot = @"@property (nonatomic, assign) CGFloat   ";
-const NSString *FormateStr  = @"@property (nonatomic, copy)   NSString *";
-const NSString *FormateArr  = @"@property (nonatomic, strong) NSArray  *";
-const NSString *FormateDic  = @"@property (nonatomic, strong) NSDictionary *";
+const NSString *FormatInt  = @"@property (nonatomic, assign) NSInteger ";
+const NSString *FormatFlot = @"@property (nonatomic, assign) CGFloat   ";
+const NSString *FormatStr  = @"@property (nonatomic, copy)   NSString *";
+const NSString *FormatArr  = @"@property (nonatomic, strong) NSArray  *";
+const NSString *FormatDic  = @"@property (nonatomic, strong) NSDictionary *";
 
-const NSString *FormateNull  = @"@property (nonatomic, strong) NSObject  *";
-const NSString *FormateBOOL  = @"@property (nonatomic, assign) BOOL  ";
+const NSString *FormatNull  = @"@property (nonatomic, strong) NSObject  *";
+const NSString *FormatBOOL  = @"@property (nonatomic, assign) BOOL  ";
 
-const NSString *UIFormateLabel  = @"@property (nonatomic, weak) UILabel  *";
-const NSString *UIFormateField  = @"@property (nonatomic, weak) UITextField *";
-const NSString *UIFormateButton  = @"@property (nonatomic, weak) UIButton *";
+const NSString *UIFormatLabel  = @"@property (nonatomic, weak) UILabel  *";
+const NSString *UIFormatField  = @"@property (nonatomic, weak) UITextField *";
+const NSString *UIFormatButton  = @"@property (nonatomic, weak) UIButton *";
 
-const NSString *UIFormateLabelIB  = @"@property (nonatomic, weak) IBOutlet UILabel  *";
-const NSString *UIFormateFieldIB  = @"@property (nonatomic, weak) IBOutlet UITextField *";
-const NSString *UIFormateButtonIB  = @"@property (nonatomic, weak) IBOutlet UIButton *";
+const NSString *UIFormatLabelIB  = @"@property (nonatomic, weak) IBOutlet UILabel  *";
+const NSString *UIFormatFieldIB  = @"@property (nonatomic, weak) IBOutlet UITextField *";
+const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIButton *";
 
 
 
@@ -61,7 +61,7 @@ const NSString *UIFormateButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBu
     NSError *err;
     id Data = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
     if ([Data isKindOfClass:[NSArray class]]) {
-        Dic = [(NSArray*)Data firstObject];
+        Dic = [(NSArray*)Data firstObject];//forgate olther item models
     }
 
 
@@ -70,7 +70,7 @@ const NSString *UIFormateButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBu
     for (NSString *key in Dic.allKeys) {
 
         if ([Dic[key] isKindOfClass:[NSString class]]) {
-            CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormateStr,key,CurrentStr];
+            CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormatStr,key,CurrentStr];
         }
         if ([Dic[key] isKindOfClass:[NSArray class]]) {
             CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", CustomArr(key),key,CurrentStr];
@@ -83,15 +83,15 @@ const NSString *UIFormateButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBu
             //dell __NSCFBoolean (false...)
             if ([Dic[key] isKindOfClass:[@(YES) class]]){
 
-                CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormateBOOL,key,CurrentStr];
+                CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormatBOOL,key,CurrentStr];
 
             }else{
 
                 CGFloat X = [Dic[key] floatValue];
                 if (X>floor(X)) {
-                    CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormateFlot,key,CurrentStr];
+                    CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormatFlot,key,CurrentStr];
                 }else{
-                    CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormateInt,key,CurrentStr];
+                    CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", FormatInt,key,CurrentStr];
                 }
             }
 
@@ -106,9 +106,9 @@ const NSString *UIFormateButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBu
 
             //dell null and so on
             if (hasNull) { // use "NSString" for the moment of custom setting
-                CurrentStr = [NSString stringWithFormat:@"%@%@; //unknow \n%@", FormateStr,key,CurrentStr];
+                CurrentStr = [NSString stringWithFormat:@"%@%@; //unknow \n%@", FormatStr,key,CurrentStr];
             }else{
-                CurrentStr = [NSString stringWithFormat:@"%@%@; //please manually modify \n%@", FormateNull,key,CurrentStr];
+                CurrentStr = [NSString stringWithFormat:@"%@%@; //please manually modify \n%@", FormatNull,key,CurrentStr];
             }
 
         }
@@ -165,9 +165,9 @@ const NSString *UIFormateButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBu
     NSString *CurrentStr = @"";
     for (NSString *key in Dic.allKeys) {
         if(IB){
-            CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", UIFormateLabelIB,key,CurrentStr];
+            CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", UIFormatLabelIB,key,CurrentStr];
         }else{
-            CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", UIFormateLabel,key,CurrentStr];
+            CurrentStr = [NSString stringWithFormat:@"%@%@; // \n%@", UIFormatLabel,key,CurrentStr];
         }
     }
     
