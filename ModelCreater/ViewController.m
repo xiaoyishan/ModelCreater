@@ -35,6 +35,7 @@
                                                                           NoteType:_NoteTypeMenu.indexOfSelectedItem
                                                                      NoteDirection:_NoteDirectionMenu.indexOfSelectedItem];
     _OutPutFeild.attributedStringValue = str;
+    _OutputTextView.accessibilityTitle = _OutPutFeild.stringValue;
     
     [self JsonToDic:json];
 }
@@ -45,7 +46,9 @@
                                                                                 HasIB:_IBCheckBtn.state
                                                                              NoteType:_NoteTypeMenu.indexOfSelectedItem
                                                                         NoteDirection:_NoteDirectionMenu.indexOfSelectedItem];
-
+    
+    _OutputTextView.accessibilityTitle = _OutPutFeild.stringValue;
+    
     [self JsonToDic:json];
 }
 
@@ -66,6 +69,15 @@
 }
 - (IBAction)NoteDirectionMenuauto:(id)sender {
     [self NoteTypeMenuauto:nil];
+}
+- (IBAction)CodeModeauto:(id)sender {
+    if (_CodemodeCheckBtn.indexOfSelectedItem==0) {
+        [_OutputTextView setHidden:YES];
+        [_OutPutFeild setHidden:NO];
+    }else{
+        [_OutputTextView setHidden:NO];
+        [_OutPutFeild setHidden:YES];
+    }
 }
 
 
