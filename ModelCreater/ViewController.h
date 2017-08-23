@@ -16,7 +16,7 @@
 
 @property (unsafe_unretained) IBOutlet NSTextView *InputTextView;
 @property (unsafe_unretained) IBOutlet NSTextView *OutputTextView;
-//@property (weak) IBOutlet NSScrollView *OutPutView;
+@property (weak) IBOutlet NSScrollView *OutPutView;
 
 
 
