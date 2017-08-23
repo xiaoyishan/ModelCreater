@@ -748,6 +748,71 @@
                                     <action selector="NoteTypeMenuauto:" target="XfG-lQ-9wD" id="UyU-Q7-4Gs"/>
                                 </connections>
                             </popUpButton>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nA0-e2-wX2">
+                                <rect key="frame" x="7" y="0.0" width="142" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <popUpButtonCell key="cell" type="push" title="LightCode Mode" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="GiC-lo-bdx" id="nkZ-xp-7Xf">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="kDN-4t-Y6C">
+                                        <items>
+                                            <menuItem title="LightCode Mode" state="on" id="GiC-lo-bdx"/>
+                                            <menuItem title="ScrollCode Mode" id="eo8-gz-8HR"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="CodeModeauto:" target="XfG-lQ-9wD" id="9LO-Av-Wl3"/>
+                                </connections>
+                            </popUpButton>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7pu-nj-Ttd">
+                                <rect key="frame" x="97" y="25" width="51" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="check" title=" IB？" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="EWT-rP-x2K">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="IBcheckauto:" target="XfG-lQ-9wD" id="KU4-Fd-k4T"/>
+                                </connections>
+                            </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hnC-oQ-xRz">
+                                <rect key="frame" x="7" y="52" width="207" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="check" title="unknow type use NSString?" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="NSY-Jv-to8">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="Nullcheckauto:" target="XfG-lQ-9wD" id="Cnw-RH-aOO"/>
+                                </connections>
+                            </button>
+                            <textField canDrawConcurrently="YES" focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ceg-iq-NMd">
+                                <rect key="frame" x="290" y="6" width="505" height="585"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" focusRingType="none" drawsBackground="YES" allowsEditingTextAttributes="YES" id="GhJ-cJ-cKo">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gK8-rm-7Ta">
+                                <rect key="frame" x="186" y="0.0" width="102" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <popUpButtonCell key="cell" type="push" title="Note Right" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="OaO-nv-ybl" id="ADt-1f-g91">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="Jt8-cL-7xi">
+                                        <items>
+                                            <menuItem title="Note Right" state="on" id="OaO-nv-ybl"/>
+                                            <menuItem title="Note Top" id="BZA-Lw-U1I"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="NoteDirectionMenuauto:" target="XfG-lQ-9wD" id="Xqj-bZ-ud8"/>
+                                </connections>
+                            </popUpButton>
                             <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RB6-ld-oI7">
                                 <rect key="frame" x="5" y="108" width="280" height="486"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
@@ -1561,7 +1626,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <scrollView hidden="YES" wantsLayer="YES" fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ak-mU-n2h">
+                            <scrollView wantsLayer="YES" fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ak-mU-n2h">
                                 <rect key="frame" x="290" y="6" width="503" height="588"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="Qcd-9e-BVu">
@@ -1588,71 +1653,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7pu-nj-Ttd">
-                                <rect key="frame" x="97" y="25" width="51" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="check" title=" IB？" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="EWT-rP-x2K">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="IBcheckauto:" target="XfG-lQ-9wD" id="KU4-Fd-k4T"/>
-                                </connections>
-                            </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hnC-oQ-xRz">
-                                <rect key="frame" x="7" y="52" width="207" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="check" title="unknow type use NSString?" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="NSY-Jv-to8">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="Nullcheckauto:" target="XfG-lQ-9wD" id="Cnw-RH-aOO"/>
-                                </connections>
-                            </button>
-                            <textField canDrawConcurrently="YES" focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ceg-iq-NMd">
-                                <rect key="frame" x="290" y="6" width="505" height="585"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" focusRingType="none" drawsBackground="YES" allowsEditingTextAttributes="YES" id="GhJ-cJ-cKo">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gK8-rm-7Ta">
-                                <rect key="frame" x="186" y="0.0" width="102" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <popUpButtonCell key="cell" type="push" title="Note Right" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="OaO-nv-ybl" id="ADt-1f-g91">
-                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
-                                    <menu key="menu" id="Jt8-cL-7xi">
-                                        <items>
-                                            <menuItem title="Note Right" state="on" id="OaO-nv-ybl"/>
-                                            <menuItem title="Note Top" id="BZA-Lw-U1I"/>
-                                        </items>
-                                    </menu>
-                                </popUpButtonCell>
-                                <connections>
-                                    <action selector="NoteDirectionMenuauto:" target="XfG-lQ-9wD" id="Xqj-bZ-ud8"/>
-                                </connections>
-                            </popUpButton>
-                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nA0-e2-wX2">
-                                <rect key="frame" x="7" y="0.0" width="142" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <popUpButtonCell key="cell" type="push" title="LightCode Mode" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="GiC-lo-bdx" id="nkZ-xp-7Xf">
-                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
-                                    <menu key="menu" id="kDN-4t-Y6C">
-                                        <items>
-                                            <menuItem title="LightCode Mode" state="on" id="GiC-lo-bdx"/>
-                                            <menuItem title="ScrollCode Mode" id="eo8-gz-8HR"/>
-                                        </items>
-                                    </menu>
-                                </popUpButtonCell>
-                                <connections>
-                                    <action selector="CodeModeauto:" target="XfG-lQ-9wD" id="9LO-Av-Wl3"/>
-                                </connections>
-                            </popUpButton>
                         </subviews>
                     </view>
                     <connections>
