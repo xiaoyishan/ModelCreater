@@ -90,6 +90,57 @@
     _InputTextView.accessibilityValue = json;
 
 }
+- (IBAction)ExportFiles:(id)sender {
+    [self JsonToDic:_InputTextView.accessibilityValue];
+    NSString *className = @"RootClassModel";
+    if(_RootNameField.stringValue.length!=0)className=[NSString stringWithFormat:@"%@Model",_RootNameField.stringValue];
+
+    NSString *json = [[JsonFormatToModel new] TranslateToViewCode:_InputTextView.accessibilityValue
+                                                                  HasIB:_IBCheckBtn.state
+                                                               NoteType:_NoteTypeMenu.indexOfSelectedItem
+                                                          NoteDirection:_NoteDirectionMenu.indexOfSelectedItem].string;
+
+    NSString *headString = [json componentsSeparatedByString:@"\n\n\n\n"].firstObject;
+    NSString *footString = [json componentsSeparatedByString:@"\n\n\n\n\n\n"].lastObject;
+
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *directoryPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,      NSUserDomainMask, YES);
+    NSString *documentDirectory = [directoryPaths objectAtIndex:0];
+
+
+    NSString *HeadPath = [documentDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.h",className]];
+    if (![fileManager fileExistsAtPath:HeadPath]) {
+        [fileManager createFileAtPath:HeadPath contents:nil attributes:nil];
+    }
+    NSData *fileData = [headString dataUsingEncoding:NSUTF8StringEncoding];
+    [fileManager createFileAtPath:HeadPath contents:fileData attributes:nil];
+
+    NSString *FootPath = [documentDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.m",className]];
+    if (![fileManager fileExistsAtPath:FootPath]) {
+        [fileManager createFileAtPath:FootPath contents:nil attributes:nil];
+    }
+    NSData *fileDataM = [footString dataUsingEncoding:NSUTF8StringEncoding];
+    [fileManager createFileAtPath:FootPath contents:fileDataM attributes:nil];
+
+
+    NSLog(@"path:%@",documentDirectory);
+
+    NSSavePanel *savePanel = [NSSavePanel savePanel];
+    [savePanel setMessage:@"Save Code "];
+    [savePanel setAllowedFileTypes:@[@"h",@"m"]];
+
+
+    [savePanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
+        if (result == NSFileHandlingPanelOKButton)
+        {
+//            [fileManager movePath:savePanel toPath:theDestination handler:nil];
+//            [fileManager movePath:theFilePath toPath:theDestination handler:nil];
+            //             savePath = [[savePanel filename] retain];
+            //
+            //             //doSomeThing..................
+        }
+    }];
+}
 
 
 
