@@ -12,6 +12,7 @@
 #import "NSView+MJExtension.h"
 #import "NSTextView+MyViewController.h"
 
+
 @interface ViewController : NSViewController
 
 @property (unsafe_unretained) IBOutlet NSTextView *InputTextView;

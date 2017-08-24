@@ -91,55 +91,54 @@
 
 }
 - (IBAction)ExportFiles:(id)sender {
+    
     [self JsonToDic:_InputTextView.accessibilityValue];
     NSString *className = @"RootClassModel";
     if(_RootNameField.stringValue.length!=0)className=[NSString stringWithFormat:@"%@Model",_RootNameField.stringValue];
 
-    NSString *json = [[JsonFormatToModel new] TranslateToViewCode:_InputTextView.accessibilityValue
-                                                                  HasIB:_IBCheckBtn.state
-                                                               NoteType:_NoteTypeMenu.indexOfSelectedItem
-                                                          NoteDirection:_NoteDirectionMenu.indexOfSelectedItem].string;
+    NSString *json = [[JsonFormatToModel new] TranslateToModelCode:_InputTextView.accessibilityValue
+                                                     RootClassName:_RootNameField.stringValue
+                                                          showNull:_NullCheckBtn.state
+                                                          NoteType:_NoteTypeMenu.indexOfSelectedItem
+                                                     NoteDirection:_NoteDirectionMenu.indexOfSelectedItem].string;
 
     NSString *headString = [json componentsSeparatedByString:@"\n\n\n\n"].firstObject;
-    NSString *footString = [json componentsSeparatedByString:@"\n\n\n\n\n\n"].lastObject;
+    NSString *footString = [json componentsSeparatedByString:@"\n\n\n\n"].lastObject;
 
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray *directoryPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,      NSUserDomainMask, YES);
-    NSString *documentDirectory = [directoryPaths objectAtIndex:0];
-
-
-    NSString *HeadPath = [documentDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.h",className]];
-    if (![fileManager fileExistsAtPath:HeadPath]) {
-        [fileManager createFileAtPath:HeadPath contents:nil attributes:nil];
-    }
-    NSData *fileData = [headString dataUsingEncoding:NSUTF8StringEncoding];
-    [fileManager createFileAtPath:HeadPath contents:fileData attributes:nil];
-
-    NSString *FootPath = [documentDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.m",className]];
-    if (![fileManager fileExistsAtPath:FootPath]) {
-        [fileManager createFileAtPath:FootPath contents:nil attributes:nil];
-    }
-    NSData *fileDataM = [footString dataUsingEncoding:NSUTF8StringEncoding];
-    [fileManager createFileAtPath:FootPath contents:fileDataM attributes:nil];
+    // add import
+//    headString = [@"#import <UIKit/UIKit.h>" stringByAppendingString:headString];
+    headString = [@"#import <Foundation/Foundation.h>" stringByAppendingString:headString];
+    footString = [[NSString stringWithFormat:@"#import \"%@.h\"",className] stringByAppendingString:footString];
 
 
-    NSLog(@"path:%@",documentDirectory);
-
-    NSSavePanel *savePanel = [NSSavePanel savePanel];
-    [savePanel setMessage:@"Save Code "];
-    [savePanel setAllowedFileTypes:@[@"h",@"m"]];
+    NSSavePanel *Panel = [NSSavePanel savePanel];
+    [Panel setMessage:@"Save Folder Name and Where ?"];
 
 
-    [savePanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
+    [Panel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
         if (result == NSFileHandlingPanelOKButton)
         {
-//            [fileManager movePath:savePanel toPath:theDestination handler:nil];
-//            [fileManager movePath:theFilePath toPath:theDestination handler:nil];
-            //             savePath = [[savePanel filename] retain];
-            //
-            //             //doSomeThing..................
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            // creat file folder
+            if (![fileManager fileExistsAtPath:Panel.URL.path]) {
+               [[NSFileManager defaultManager] createDirectoryAtPath:Panel.URL.path withIntermediateDirectories:YES attributes:nil error:nil];
+            }
+            
+            
+            NSString *HeadFile = [NSString stringWithFormat:@"%@/%@.h", Panel.URL.path, className];
+            NSString *FootFile = [NSString stringWithFormat:@"%@/%@.m", Panel.URL.path, className];
+
+            NSData *fileDataH = [headString dataUsingEncoding:NSUTF8StringEncoding];
+            [fileManager createFileAtPath:HeadFile contents:fileDataH attributes:nil];
+            
+            NSData *fileDataM = [footString dataUsingEncoding:NSUTF8StringEncoding];
+            [fileManager createFileAtPath:FootFile contents:fileDataM attributes:nil];
         }
     }];
+
+
+
+
 }
 
 
@@ -164,7 +163,7 @@
 
 
 
-- (void) WarringForHold{
+- (void)WarringForHold{
     NSAlert *alert = [[NSAlert alloc] init];
     [alert addButtonWithTitle:@"OK"];
     [alert setMessageText:@"tranlate failed"];
@@ -172,6 +171,9 @@
     [alert setAlertStyle:NSAlertStyleWarning];
     [alert beginSheetModalForWindow:self.view.window completionHandler:nil];
 }
+
+
+
 
 
 @end
