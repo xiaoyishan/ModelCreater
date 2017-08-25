@@ -114,7 +114,6 @@
     NSSavePanel *Panel = [NSSavePanel savePanel];
     [Panel setMessage:@"Save Folder Name and Where ?"];
 
-
     [Panel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
         if (result == NSFileHandlingPanelOKButton)
         {
@@ -140,6 +139,61 @@
 
 
 }
+
+- (IBAction)ExportMutFiles:(id)sender {
+    
+    
+    [self JsonToDic:_InputTextView.accessibilityValue];
+    NSString *className = @"RootClassModel";
+    if(_RootNameField.stringValue.length!=0)className=[NSString stringWithFormat:@"%@Model",_RootNameField.stringValue];
+    
+    NSString *json = [[JsonFormatToModel new] TranslateToModelCode:_InputTextView.accessibilityValue
+                                                     RootClassName:_RootNameField.stringValue
+                                                          showNull:_NullCheckBtn.state
+                                                          NoteType:_NoteTypeMenu.indexOfSelectedItem
+                                                     NoteDirection:_NoteDirectionMenu.indexOfSelectedItem].string;
+    
+    NSString *headString = [json componentsSeparatedByString:@"\n\n\n\n"].firstObject;
+    NSString *footString = [json componentsSeparatedByString:@"\n\n\n\n"].lastObject;
+    
+    // add import
+    //    headString = [@"#import <UIKit/UIKit.h>" stringByAppendingString:headString];
+    headString = [@"#import <Foundation/Foundation.h>" stringByAppendingString:headString];
+    footString = [[NSString stringWithFormat:@"#import \"%@.h\"",className] stringByAppendingString:footString];
+    
+    
+    NSSavePanel *Panel = [NSSavePanel savePanel];
+    [Panel setMessage:@"Save Folder Name and Where ?"];
+    
+    [Panel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
+        if (result == NSFileHandlingPanelOKButton)
+        {
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            // creat file folder
+            if (![fileManager fileExistsAtPath:Panel.URL.path]) {
+                [[NSFileManager defaultManager] createDirectoryAtPath:Panel.URL.path withIntermediateDirectories:YES attributes:nil error:nil];
+            }
+            
+            
+            NSString *HeadFile = [NSString stringWithFormat:@"%@/%@.h", Panel.URL.path, className];
+            NSString *FootFile = [NSString stringWithFormat:@"%@/%@.m", Panel.URL.path, className];
+            
+            NSData *fileDataH = [headString dataUsingEncoding:NSUTF8StringEncoding];
+            [fileManager createFileAtPath:HeadFile contents:fileDataH attributes:nil];
+            
+            NSData *fileDataM = [footString dataUsingEncoding:NSUTF8StringEncoding];
+            [fileManager createFileAtPath:FootFile contents:fileDataM attributes:nil];
+        }
+    }];
+    
+    
+}
+
+
+
+
+
+
 
 
 
