@@ -107,8 +107,8 @@
 
     // add import
 //    headString = [@"#import <UIKit/UIKit.h>" stringByAppendingString:headString];
-    headString = [@"#import <Foundation/Foundation.h>" stringByAppendingString:headString];
-    footString = [[NSString stringWithFormat:@"#import \"%@.h\"",className] stringByAppendingString:footString];
+    headString = [@"\n\n\n#import <Foundation/Foundation.h>\n\n\n" stringByAppendingString:headString];
+    footString = [[NSString stringWithFormat:@"\n\n\n#import \"%@.h\"\n\n\n",className] stringByAppendingString:footString];
 
 
     NSSavePanel *Panel = [NSSavePanel savePanel];
