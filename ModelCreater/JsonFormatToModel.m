@@ -121,9 +121,9 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
 
                 //dell null and so on
                 if (hasNull) { // use "NSString" for the moment of custom setting
-                    CurrentStr = [NSString stringWithFormat:@"%@%@; %@//unknow \n%@", FormatStr,key, NoteStr,CurrentStr];
+                    CurrentStr = [NSString stringWithFormat:@"%@%@; %@ //unknow \n%@", FormatStr,key, NoteStr,CurrentStr];
                 }else{
-                    CurrentStr = [NSString stringWithFormat:@"%@%@; %@//please manually modify \n%@", FormatNull,key, NoteStr,CurrentStr];
+                    CurrentStr = [NSString stringWithFormat:@"%@%@; %@ //please manually modify \n%@", FormatNull,key, NoteStr,CurrentStr];
                 }
                 
             }
