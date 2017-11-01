@@ -89,7 +89,13 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
                 CurrentStr = [NSString stringWithFormat:@"%@%@; %@ \n%@", FormatStr, key,NoteStr,CurrentStr];
             }
             if ([Dic[key] isKindOfClass:[NSArray class]]) {
-                CurrentStr = [NSString stringWithFormat:@"%@%@; %@ \n%@", CustomArr(key), key,NoteStr,CurrentStr];
+                NSArray *temp = Dic[key];
+                if (temp.count==0 || ![temp.firstObject isKindOfClass:[NSDictionary class]] ) {
+                    CurrentStr = [NSString stringWithFormat:@"%@%@; %@ \n%@", FormatArr, key,NoteStr,CurrentStr];
+                }else{
+                    CurrentStr = [NSString stringWithFormat:@"%@%@; %@ \n%@", CustomArr(key), key,NoteStr,CurrentStr];
+                }
+                
             }
             if ([Dic[key] isKindOfClass:[NSDictionary class]]) {
                 CurrentStr = [NSString stringWithFormat:@"%@%@; %@ \n%@", CustomDic(key), key,NoteStr,CurrentStr];
@@ -203,13 +209,16 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
                          NoteDirection:noteDirection];
         }
         if ([Dic[key] isKindOfClass:[NSArray class]]) {
-            for (NSDictionary *ArrDic in Dic[key]) {
-                [self TranslateToModelCode:[self Json:ArrDic]
-                             RootClassName:key
-                                  showNull:hasNull
-                                  NoteType:noteType
-                             NoteDirection:noteDirection];
+            if ([Dic[key] isKindOfClass:[NSDictionary class]]) {
+                for (NSDictionary *ArrDic in Dic[key]) {
+                    [self TranslateToModelCode:[self Json:ArrDic]
+                                 RootClassName:key
+                                      showNull:hasNull
+                                      NoteType:noteType
+                                 NoteDirection:noteDirection];
+                }
             }
+            
         }
 
         
