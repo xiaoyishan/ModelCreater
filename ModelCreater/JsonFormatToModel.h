@@ -11,12 +11,12 @@
 
 
 typedef NS_ENUM(NSUInteger, NoteType) {
-    NoteTypeDefault ,       // "//"
-    NoteTypeDocument,       // "/**/"
+    NoteTypeDefault ,       //   //
+    NoteTypeDocument,       //   /**/
 };
 typedef NS_ENUM(NSUInteger, NoteDirection) {
-    NoteDirectionRight,     // "→"
-    NoteDirectionTop ,      // "↑"
+    NoteDirectionRight,     // " → "
+    NoteDirectionTop ,      // " ↑ "
 };
 typedef NS_ENUM(NSUInteger, NoteLanguage) {
     NoteLanguageDefault ,       // 简体中文

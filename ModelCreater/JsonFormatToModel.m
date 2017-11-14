@@ -209,7 +209,7 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
                          NoteDirection:noteDirection];
         }
         if ([Dic[key] isKindOfClass:[NSArray class]]) {
-            if ([Dic[key] isKindOfClass:[NSDictionary class]]) {
+            if ([[Dic[key] firstObject] isKindOfClass:[NSDictionary class]]) {
                 for (NSDictionary *ArrDic in Dic[key]) {
                     [self TranslateToModelCode:[self Json:ArrDic]
                                  RootClassName:key
