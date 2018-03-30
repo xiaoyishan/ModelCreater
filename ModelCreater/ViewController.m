@@ -14,9 +14,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    //clear fontColor
+    // clear fontColor
     [_InputTextView removeAttachments];
     _InputTextView.accessibilityValue = _InputTextView.accessibilityValue;
+    
+    // set scroller mode text color
+    [_OutputTextView setTextColor:[NSColor blueColor]];
 }
 
 
@@ -90,6 +93,11 @@
     _InputTextView.accessibilityValue = json;
 
 }
+
+
+
+
+
 - (IBAction)ExportFiles:(id)sender {
     
     [self JsonToDic:_InputTextView.accessibilityValue];
@@ -147,10 +155,10 @@
 
 
 
-//json -> dic
+// json -> dic
 - (NSDictionary*)JsonToDic:(NSString*)json{
 
-    //remove rich text format
+    // remove rich text format
     [_InputTextView removeAttachments];
     _InputTextView.accessibilityValue = json;
 

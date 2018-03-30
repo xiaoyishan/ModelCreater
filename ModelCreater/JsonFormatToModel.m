@@ -61,12 +61,12 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
                                     NoteDirection:(NoteDirection)noteDirection{
     NSDictionary *Dic = [self JsonToDic:json];
 
-    //if json is array
+    // if json is array
     NSData *jsonData = [json dataUsingEncoding:NSUTF8StringEncoding];
     NSError *err;
     id Data = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
     if ([Data isKindOfClass:[NSArray class]]) {
-        Dic = [(NSArray*)Data firstObject];//forgate olther item models
+        Dic = [(NSArray*)Data firstObject];// forgate olther item models
     }
 
 
@@ -102,7 +102,7 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
             }
             if ([Dic[key] isKindOfClass:[NSNumber class]]) {
 
-                //deal __NSCFBoolean (false...)
+                // deal __NSCFBoolean (false...)
                 if ([Dic[key] isKindOfClass:[@(YES) class]]){
 
                     CurrentStr = [NSString stringWithFormat:@"%@%@; %@ \n%@", FormatBOOL,key, NoteStr,CurrentStr];
@@ -125,7 +125,7 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
                 ![Dic[key] isKindOfClass:[NSDictionary class]] &&
                 ![Dic[key] isKindOfClass:[NSNumber class]]) {
 
-                //dell null and so on
+                // dell null and so on
                 if (hasNull) { // use "NSString" for the moment of custom setting
                     CurrentStr = [NSString stringWithFormat:@"%@%@; %@ //unknow \n%@", FormatStr,key, NoteStr,CurrentStr];
                 }else{
@@ -154,7 +154,7 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
             }
             if ([Dic[key] isKindOfClass:[NSNumber class]]) {
 
-                //deal __NSCFBoolean (false...)
+                // deal __NSCFBoolean (false...)
                 if ([Dic[key] isKindOfClass:[@(YES) class]]){
 
                     CurrentStr = [NSString stringWithFormat:@"%@\n%@%@;  \n%@",  NoteStr,FormatBOOL,key,CurrentStr];
@@ -177,7 +177,7 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
                 ![Dic[key] isKindOfClass:[NSDictionary class]] &&
                 ![Dic[key] isKindOfClass:[NSNumber class]]) {
 
-                //dell null and so on
+                // dell null and so on
                 if (hasNull) { // use "NSString" for the moment of custom setting
                     CurrentStr = [NSString stringWithFormat:@"%@\n%@%@; //unknow \n%@", NoteStr, FormatStr,key,CurrentStr];
                 }else{
@@ -326,7 +326,7 @@ const NSString *UIFormatButtonIB  = @"@property (nonatomic, weak) IBOutlet UIBut
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
-//json -> dic
+// json -> dic
 - (NSDictionary*)JsonToDic:(NSString*)json{
 
     NSData *jsonData = [json dataUsingEncoding:NSUTF8StringEncoding];
